@@ -11,15 +11,13 @@ $ ->
       signal = [$(this).data('note'), $(this).data('instrument')]
       alert(signal)
 
-
-@playSound = (buffer) ->
+@playSound = (context, buffer) ->
   source = context.createBufferSource()
   source.buffer = buffer
   source.connect context.destination
   source.start 0
 
 class @BufferLoader
-
   constructor: (context, urlListObj, callback) ->
     @context = context
     @urlListObj = urlListObj
