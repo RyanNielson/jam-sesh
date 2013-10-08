@@ -17,7 +17,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: vagrant_development
+  database: jam_sesh_development
   pool: 5
   username: vagrant
   password:
@@ -46,7 +46,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: vagrant_test
+  database: jam_sesh_test
   pool: 5
   username: vagrant
   password:
@@ -54,7 +54,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: vagrant_production
+  database: jam_sesh_production
   pool: 5
   username: vagrant
   password:
