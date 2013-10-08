@@ -1,9 +1,7 @@
-<%= button_to "Instrument 1, Note 1", submit_note_path(instrument: 1, note: 1), remote: true %>
-<%= button_to "Instrument 1, Note 2", submit_note_path(instrument: 1, note: 2), remote: true %>
-<%= button_to "Instrument 1, Note 3", submit_note_path(instrument: 1, note: 3), remote: true %>
-<%= button_to "Instrument 1, Note 4", submit_note_path(instrument: 1, note: 4), remote: true %>
-<%= button_to "Instrument 1, Note 5", submit_note_path(instrument: 1, note: 5), remote: true %>
-<%= button_to "Instrument 1, Note 6", submit_note_path(instrument: 1, note: 6), remote: true %>
+<%= button_to "Drum Note 0", submit_note_path(instrument: "drum", note: "0"), remote: true %>
+<%= button_to "Drum Note 1", submit_note_path(instrument: "drum", note: "1"), remote: true %>
+<%= button_to "Guitar Note 0", submit_note_path(instrument: "guitar", note: "0"), remote: true %>
+<%= button_to "Guitar Note 1", submit_note_path(instrument: "guitar", note: "1"), remote: true %>
 
 <div class="container">
   <div class="content">

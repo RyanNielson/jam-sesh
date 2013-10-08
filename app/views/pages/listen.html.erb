@@ -1,8 +1,54 @@
 <script type="text/javascript">
+  var buffers = new Object();
   var pusher = new Pusher('cb0d48e70b7bd9b4c14c');
   var channel = pusher.subscribe('notes');
   channel.bind('note_played', function(data) {
-    console.log("Instrument: " + data.instrument);
-    console.log("Note: " + data.note);
+    playSound(buffers[data.instrument + "_" + data.note]);
   });
+
+  window.onload = init;
+  var context;
+  var bufferLoader;
+
+  function init() {
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    context = new AudioContext();
+
+    bufferLoader = new BufferLoader(
+      context,
+      {
+        drum_0: "/sounds/drum/0.mp3",
+        drum_1: "/sounds/drum/1.mp3",
+        guitar_0: "/sounds/guitar/0.mp3",
+        guitar_1: "/sounds/guitar/1.mp3"
+      },
+      finishedLoading
+      );
+
+    bufferLoader.load();
+  }
+
+  //var sources = new Array();
+  function finishedLoading(bufferList) {
+    console.log(bufferList);
+    for (var key in bufferList) {
+      buffers[key] = bufferList[key];
+      // var source = context.createBufferSource();
+      // source.buffer = bufferList[key];
+      // source.connect(context.destination);
+      // sources[key] = source;
+      //console.log(sources);
+      //source.start(0);
+    }
+  }
+
+  function playSound(buffer) {
+    var source = context.createBufferSource();
+    source.buffer = buffer;
+    source.connect(context.destination);
+    source.start(0);
+  }
+  //console.log(sources);
+  //sources["guitar_1"].start(0);
+
 </script>
