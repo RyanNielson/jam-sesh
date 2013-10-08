@@ -1,0 +1,34 @@
+<script type="text/javascript">
+  var audioBuffers = new Object();
+  var audioContext;
+  var pusher = new Pusher('cb0d48e70b7bd9b4c14c');
+  var channel = pusher.subscribe('notes');
+  channel.bind('note_played', function(data) {
+    playSound(audioContext, audioBuffers[data.instrument + "_" + data.note]);
+  });
+
+  window.onload = init;
+  
+  function init() {
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    audioContext = new AudioContext();
+
+    var bufferLoader = new BufferLoader(
+      audioContext,
+      {
+        drum_0: "/sounds/drum/0.mp3",
+        drum_1: "/sounds/drum/1.mp3",
+        guitar_0: "/sounds/guitar/0.mp3",
+        guitar_1: "/sounds/guitar/1.mp3"
+      },
+      finishedLoading
+      );
+
+    bufferLoader.load();
+  }
+
+  function finishedLoading(bufferList) {
+    for (var key in bufferList)
+      audioBuffers[key] = bufferList[key];
+  }
+</script>
