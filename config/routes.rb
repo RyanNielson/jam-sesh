@@ -1,4 +1,7 @@
-Vagrant::Application.routes.draw do
+JamSesh::Application.routes.draw do
+  get "listen" => "pages#listen", as: "listen"
+
+  root "pages#home"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
