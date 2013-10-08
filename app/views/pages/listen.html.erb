@@ -1,0 +1,8 @@
+<script type="text/javascript">
+  var pusher = new Pusher('cb0d48e70b7bd9b4c14c');
+  var channel = pusher.subscribe('notes');
+  channel.bind('note_played', function(data) {
+    console.log("Instrument: " + data.instrument);
+    console.log("Note: " + data.note);
+  });
+</script>

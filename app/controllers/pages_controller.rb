@@ -1,11 +1,21 @@
 class PagesController < ApplicationController
   def home
+  end
+
+  def submit_note
+    require "pp"
+    pp params
+
+    unless params[:instrument].blank? || params[:note].blank?
+      Pusher['notes'].trigger('note_played', {
+        instrument: params[:instrument],
+        note: params[:note]
+      })
+    end
 
     respond_to do |format|
-      format.html { render }
       format.js { }
     end
-  
   end
 
   def listen
