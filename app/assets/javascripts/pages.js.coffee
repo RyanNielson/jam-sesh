@@ -12,6 +12,12 @@ $ ->
       alert(signal)
 
 
+@playSound = (buffer) ->
+  source = context.createBufferSource()
+  source.buffer = buffer
+  source.connect context.destination
+  source.start 0
+
 class @BufferLoader
 
   constructor: (context, urlListObj, callback) ->

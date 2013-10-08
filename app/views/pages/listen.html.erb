@@ -28,27 +28,9 @@
     bufferLoader.load();
   }
 
-  //var sources = new Array();
   function finishedLoading(bufferList) {
-    console.log(bufferList);
     for (var key in bufferList) {
       buffers[key] = bufferList[key];
-      // var source = context.createBufferSource();
-      // source.buffer = bufferList[key];
-      // source.connect(context.destination);
-      // sources[key] = source;
-      //console.log(sources);
-      //source.start(0);
     }
   }
-
-  function playSound(buffer) {
-    var source = context.createBufferSource();
-    source.buffer = buffer;
-    source.connect(context.destination);
-    source.start(0);
-  }
-  //console.log(sources);
-  //sources["guitar_1"].start(0);
-
 </script>
