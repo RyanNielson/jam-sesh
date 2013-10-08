@@ -3,9 +3,6 @@ class PagesController < ApplicationController
   end
 
   def submit_note
-    require "pp"
-    pp params
-
     unless params[:instrument].blank? || params[:note].blank?
       Pusher['notes'].trigger('note_played', {
         instrument: params[:instrument],
