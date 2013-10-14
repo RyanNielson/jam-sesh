@@ -7,7 +7,8 @@ var gravity = 6;
 var winW, winH;
 var lastOrientation;
 var animationId;
-var context = new webkitAudioContext();
+//var notes = [0, 2, 3, 5, 7];
+var notes = [0, 5, 7, 12];
 
 
 var baseNote = 440;
@@ -22,15 +23,6 @@ function init() {
     }
     window.addEventListener('deviceorientation', deviceOrientationTest, false);
     doLayout(document);
-
-    /*oscillator1 = context.createOscillator();
-    oscillator1.type = 0;
-    oscillator1.connect(context.destination);
-    oscillator1.noteOn(0);
-    oscillator2 = context.createOscillator();
-    oscillator2.type = 1;
-    oscillator2.connect(context.destination);
-    oscillator2.noteOn(0);*/
 }
 
 function deviceOrientationTest(event) {
@@ -59,12 +51,12 @@ function doLayout(event) {
 function renderDot() {
     var surface = id('surface');
     var context = surface.getContext('2d');
-    context.clearRect(0, 0, surface.width, surface.height);
+    context.canvas.width = context.canvas.width;
     context.fillStyle = dot.color;
     context.arc(dot.x - (dot.size/2), dot.y - (dot.size/2), dot.size, 0, 2 * Math.PI, false);
     context.fill();
     //oscillator1.frequency.value = (dot.x/10) * (dot.y/10);
-    noteSize = surface.width/5;
+    noteSize = surface.width/notes.length;
     theNote = Math.floor(dot.x / noteSize);
 
     if(theNote != oldNote){
@@ -72,18 +64,9 @@ function renderDot() {
         $.ajax({
             url: '/submit_accelerometer',
             type: 'POST',
-            data: {accelerometer: theNote}
+            data: {accelerometer: notes[theNote]}
         });
     }
-
-    /*if(theNote){
-        oscillator1.frequency.value = baseNote * Math.pow(Math.pow(2,theNote),1/12)
-        oscillator2.frequency.value = baseNote * Math.pow(Math.pow(2,theNote*Math.pow(2,theNote)),1/12)
-    }
-    else{
-        oscillator1.frequency.value = baseNote;
-        oscillator2.frequency.value = baseNote;
-    }*/
 }
 
 function moveDot(x, y) {
@@ -150,10 +133,8 @@ function getRandomWholeNumber(min, max) { return Math.round(((Math.random() * (m
 function getRandomHex() { return (Math.round(Math.random() * 0xFFFFFF)).toString(16); };
 
 (function($) {
-    console.log($('#surface').length);
     $(document).ready(function(){
         if($('#surface').length>0){
-            console.log('asd');
             init();
         }
     });
