@@ -42,3 +42,5 @@ class @BufferLoader
       alert "BufferLoader: XHR error"
 
     request.send()
+
+$ = jQuery
