@@ -14,6 +14,33 @@ var notes = [0, 5, 7, 12];
 var baseNote = 440;
 
 function init() {
+    gyro.frequency = 10;
+
+    gyro.startTracking(function(o){
+        var xDelta, yDelta;
+        switch (window.orientation) {
+            case 0:
+                xDelta = o.gamma;
+                yDelta = o.beta;
+                break;
+            case 180:
+                xDelta = o.gamma * -1;
+                yDelta = o.beta * -1;
+                break;
+            case 90:
+                xDelta = o.beta;
+                yDelta = o.gamma * -1;
+                break;
+            case -90:
+                xDelta = o.beta * -1;
+                yDelta = o.gamma;
+                break;
+            default:
+                xDelta = o.gamma;
+                yDelta = o.beta;
+        }
+        moveDot(xDelta, yDelta);
+    });
     lastOrientation = {};
     window.addEventListener('resize', doLayout, false);
     if ('webkitRequestFullScreen' in document.body) {
@@ -111,7 +138,7 @@ function onRenderUpdate(event) {
             xDelta = lastOrientation.gamma;
             yDelta = lastOrientation.beta;
     }
-    moveDot(xDelta, yDelta);
+    //moveDot(xDelta, yDelta);
 }
 
 function onFullscreen(event) {

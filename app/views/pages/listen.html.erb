@@ -2,12 +2,16 @@
   var audioBuffers = new Object();
   var audioContext;
   var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>");
-  var channel = pusher.subscribe('notes');
   var pad_channel = pusher.subscribe('pads');
+  var privateChannel = pusher.subscribe('private-notes');
 
-  channel.bind('note_played', function(data) {
-    playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note]);
+  privateChannel.bind('pusher:subscription_succeeded', function() {
+    console.log("subscribed");
+    privateChannel.bind('client-note_played', function(data) {
+      playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note]);
+    });
   });
+
   pad_channel.bind('pad_change', function(data) {
     // window.oscillator1.frequency.value = 440 * Math.pow(Math.pow(2,data.pad),1/12)
     // window.oscillator2.frequency.value = 450 * Math.pow(Math.pow(2,data.pad),1/12)
@@ -24,7 +28,7 @@
     audioContext = new AudioContext();
 
     var context = new webkitAudioContext();
-    var vol = 0.25;
+      var vol = 0.25;
 
     window.tones = 
         [
@@ -43,6 +47,21 @@
                 freq : 392.00,
                 amp : 0.5 * vol
             },
+            {
+                type : 1,
+                freq : 440,
+                amp : 0.1 * vol
+            },
+            {
+                type : 3,
+                freq : 392.00,
+                amp : 0.5 * vol
+            },
+            {
+                type : 2,
+                freq : 55,
+                amp : 0.25 * vol
+            }
         ];
 
     for(var i = 0; i<tones.length; i++){
@@ -59,33 +78,33 @@
     var bufferLoader = new BufferLoader(
       audioContext,
       {
-        s0_0: "<%= asset_path('0/0.mp3') %>",
-        s0_1: "<%= asset_path('0/1.mp3') %>",
-        s0_2: "<%= asset_path('0/2.mp3') %>",
-        s0_3: "<%= asset_path('0/3.mp3') %>",
-        s0_4: "<%= asset_path('0/4.mp3') %>",
-        s0_5: "<%= asset_path('0/5.mp3') %>",
+        s0_0: "<%= asset_path('i0/s0.mp3') %>",
+        s0_1: "<%= asset_path('i0/s1.mp3') %>",
+        s0_2: "<%= asset_path('i0/s2.mp3') %>",
+        s0_3: "<%= asset_path('i0/s3.mp3') %>",
+        s0_4: "<%= asset_path('i0/s4.mp3') %>",
+        s0_5: "<%= asset_path('i0/s5.mp3') %>",
 
-        s1_0: "<%= asset_path('1/0.mp3') %>",
-        s1_1: "<%= asset_path('1/1.mp3') %>",
-        s1_2: "<%= asset_path('1/2.mp3') %>",
-        s1_3: "<%= asset_path('1/3.mp3') %>",
-        s1_4: "<%= asset_path('1/4.mp3') %>",
-        s1_5: "<%= asset_path('1/5.mp3') %>",
+        s1_0: "<%= asset_path('i1/s0.mp3') %>",
+        s1_1: "<%= asset_path('i1/s1.mp3') %>",
+        s1_2: "<%= asset_path('i1/s2.mp3') %>",
+        s1_3: "<%= asset_path('i1/s3.mp3') %>",
+        s1_4: "<%= asset_path('i1/s4.mp3') %>",
+        s1_5: "<%= asset_path('i1/s5.mp3') %>",
 
-        s2_0: "<%= asset_path('2/0.mp3') %>",
-        s2_1: "<%= asset_path('2/1.mp3') %>",
-        s2_2: "<%= asset_path('2/2.mp3') %>",
-        s2_3: "<%= asset_path('2/3.mp3') %>",
-        s2_4: "<%= asset_path('2/4.mp3') %>",
-        s2_5: "<%= asset_path('2/5.mp3') %>",
+        s2_0: "<%= asset_path('i2/s0.mp3') %>",
+        s2_1: "<%= asset_path('i2/s1.mp3') %>",
+        s2_2: "<%= asset_path('i2/s2.mp3') %>",
+        s2_3: "<%= asset_path('i2/s3.mp3') %>",
+        s2_4: "<%= asset_path('i2/s4.mp3') %>",
+        s2_5: "<%= asset_path('i2/s5.mp3') %>",
 
-        s3_0: "<%= asset_path('3/0.mp3') %>",
-        s3_1: "<%= asset_path('3/1.mp3') %>",
-        s3_2: "<%= asset_path('3/2.mp3') %>",
-        s3_3: "<%= asset_path('3/3.mp3') %>",
-        s3_4: "<%= asset_path('3/4.mp3') %>",
-        s3_5: "<%= asset_path('3/5.mp3') %>"
+        s3_0: "<%= asset_path('i3/s0.mp3') %>",
+        s3_1: "<%= asset_path('i3/s1.mp3') %>",
+        s3_2: "<%= asset_path('i3/s2.mp3') %>",
+        s3_3: "<%= asset_path('i3/s3.mp3') %>",
+        s3_4: "<%= asset_path('i3/s4.mp3') %>",
+        s3_5: "<%= asset_path('i3/s5.mp3') %>"
       },
       finishedLoading
       );
@@ -94,7 +113,8 @@
   }
 
   function finishedLoading(bufferList) {
-    for (var key in bufferList)
+    for (var key in bufferList){
       audioBuffers[key] = bufferList[key];
+    }
   }
 </script>
