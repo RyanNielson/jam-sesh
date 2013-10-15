@@ -1,4 +1,9 @@
-Vagrant::Application.routes.draw do
+JamSesh::Application.routes.draw do
+  get "listen" => "pages#listen", as: "listen"
+  get "accelerometer" => "pages#accelerometer", as: "accelerometer"
+  post "submit_note" => "pages#submit_note", as: "submit_note"
+  post "submit_accelerometer" => "pages#submit_accelerometer", as: "submit_accelerometer"
+  root "pages#home"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

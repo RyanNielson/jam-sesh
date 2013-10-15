@@ -1,0 +1,99 @@
+<script type="text/javascript">
+  var audioBuffers = new Object();
+  var audioContext;
+  var pusher = new Pusher('cb0d48e70b7bd9b4c14c');
+  var channel = pusher.subscribe('notes');
+  var pad_channel = pusher.subscribe('pads');
+
+  channel.bind('note_played', function(data) {
+    playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note]);
+  });
+  pad_channel.bind('pad_change', function(data) {
+    // window.oscillator1.frequency.value = 440 * Math.pow(Math.pow(2,data.pad),1/12)
+    // window.oscillator2.frequency.value = 450 * Math.pow(Math.pow(2,data.pad),1/12)
+    // window.oscillator3.frequency.value = 460 * Math.pow(Math.pow(2,data.pad),1/12)
+    for(var i = 0; i<window.tones.length; i++){
+      window.tones[i].osc.frequency.value = window.tones[i].freq * Math.pow(Math.pow(2,data.pad),1/12);
+    }
+  });
+
+  window.onload = init;
+  
+  function init() {
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    audioContext = new AudioContext();
+
+    var context = new webkitAudioContext();
+
+    window.tones = 
+        [
+            {
+                type : 0,
+                freq : 220,
+                amp : 1
+            },
+            {
+                type : 3,
+                freq : 293.66,
+                amp : 0.5
+            },
+            {
+                type : 3,
+                freq : 392.00,
+                amp : 0.5
+            },
+        ];
+
+    for(var i = 0; i<tones.length; i++){
+        tones[i].osc = context.createOscillator();
+        tones[i].osc.type = tones[i].type;
+        tones[i].osc.frequency.value = tones[i].freq;
+        tones[i].gain = context.createGainNode();
+        tones[i].gain.connect(context.destination);
+        tones[i].gain.gain.value = tones[i].amp;
+        tones[i].osc.connect(tones[i].gain);
+        tones[i].osc.start(0);
+    }
+
+    var bufferLoader = new BufferLoader(
+      audioContext,
+      {
+        s0_0: "/sounds/0/0.mp3",
+        s0_1: "/sounds/0/1.mp3",
+        s0_2: "/sounds/0/2.mp3",
+        s0_3: "/sounds/0/3.mp3",
+        s0_4: "/sounds/0/4.mp3",
+        s0_5: "/sounds/0/5.mp3",
+
+        s1_0: "/sounds/1/0.mp3",
+        s1_1: "/sounds/1/1.mp3",
+        s1_2: "/sounds/1/2.mp3",
+        s1_3: "/sounds/1/3.mp3",
+        s1_4: "/sounds/1/4.mp3",
+        s1_5: "/sounds/1/5.mp3",
+
+        s2_0: "/sounds/2/0.mp3",
+        s2_1: "/sounds/2/1.mp3",
+        s2_2: "/sounds/2/2.mp3",
+        s2_3: "/sounds/2/3.mp3",
+        s2_4: "/sounds/2/4.mp3",
+        s2_5: "/sounds/2/5.mp3",
+
+        s3_0: "/sounds/3/0.mp3",
+        s3_1: "/sounds/3/1.mp3",
+        s3_2: "/sounds/3/2.mp3",
+        s3_3: "/sounds/3/3.mp3",
+        s3_4: "/sounds/3/4.mp3",
+        s3_5: "/sounds/3/5.mp3"
+      },
+      finishedLoading
+      );
+
+    bufferLoader.load();
+  }
+
+  function finishedLoading(bufferList) {
+    for (var key in bufferList)
+      audioBuffers[key] = bufferList[key];
+  }
+</script>
