@@ -1,104 +1,133 @@
-// Place all the styles related to the Pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
+* {
+  outline: none;
+}
 html, body {
     height: 100%;
     padding: 0;
     margin: 0;
 }
+
 .container {
-    display: table;
     width: 100%;
     height: 100%;
     text-align: center;
 }
-.container > div {
-    display: table-row;
-    width: 100%;
+
+.row {
+  height:33%;
 }
-.container > div > div {
-    display: table-cell;
+
+.row:last-child {
+  height:34%;
 }
-.content > div {
-    height: 33%;
-    width: 100%;
-    float: left;
+
+.row * {
+  height: 100%;
 }
-.content > div > div {
-    width:50%;
-    height: 100%;
-    float: left;
+
+.note {
+  width: 100%;
+  border: none;
+  color: #fff;
 }
-.instrument-1 .note-1 {
+
+.col {
+  padding: 0;
+}
+
+.instrument-0.note-0 {
     background-color: #000;
 }
-.instrument-1 .note-2 {
+
+.instrument-0.note-1 {
     background-color: #333;
 }
-.instrument-1 .note-3 {
+
+.instrument-0.note-2 {
     background-color: #666;
 }
-.instrument-1 .note-4 {
+
+.instrument-0.note-3 {
     background-color: #999;
 }
-.instrument-1 .note-5 {
+
+.instrument-0.note-4 {
     background-color: #CCC;
 }
-.instrument-1 .note-6 {
+
+.instrument-0.note-5 {
     background-color: #FFF;
 }
-.instrument-2 .note-1 {
-    background-color: #F00;
+
+.instrument-1.note-0 {
+    background-color: #000;
 }
-.instrument-2 .note-2 {
-    background-color: #F33;
+
+.instrument-1.note-1 {
+    background-color: #003;
 }
-.instrument-2 .note-3 {
-    background-color: #F66;
+
+.instrument-1.note-2 {
+    background-color: #006;
 }
-.instrument-2 .note-4 {
-    background-color: #F99;
+
+.instrument-1.note-3 {
+    background-color: #009;
 }
-.instrument-2 .note-5 {
-    background-color: #FCC;
+
+.instrument-1.note-4 {
+    background-color: #00C;
 }
-.instrument-2 .note-6 {
-    background-color: #FFF;
-}
-.instrument-3 .note-1 {
-    background-color: #0F0;
-}
-.instrument-3 .note-2 {
-    background-color: #3F3;
-}
-.instrument-3 .note-3 {
-    background-color: #6F6;
-}
-.instrument-3 .note-4 {
-    background-color: #9F9;
-}
-.instrument-3 .note-5 {
-    background-color: #CFC;
-}
-.instrument-3 .note-6 {
-    background-color: #FFF;
-}
-.instrument-4 .note-1 {
+
+.instrument-1.note-5 {
     background-color: #00F;
 }
-.instrument-4 .note-2 {
-    background-color: #33F;
+
+
+.instrument-2.note-0 {
+    background-color: #000;
 }
-.instrument-4 .note-3 {
-    background-color: #66F;
+
+.instrument-2.note-1 {
+    background-color: #030;
 }
-.instrument-4 .note-4 {
-    background-color: #99F;
+
+.instrument-2.note-2 {
+    background-color: #060;
 }
-.instrument-4 .note-5 {
-    background-color: #CCF;
+
+.instrument-2.note-3 {
+    background-color: #090;
 }
-.instrument-4 .note-6 {
-    background-color: #FFF;
+
+.instrument-2.note-4 {
+    background-color: #0C0;
+}
+
+.instrument-2.note-5 {
+    background-color: #0F0;
+}
+
+.instrument-3.note-0 {
+    background-color: #000;
+}
+
+.instrument-3.note-1 {
+    background-color: #300;
+}
+
+.instrument-3.note-2 {
+    background-color: #600;
+}
+
+.instrument-3.note-3 {
+    background-color: #900;
+}
+
+.instrument-3.note-4 {
+    background-color: #C00;
+}
+
+.instrument-3.note-5 {
+    background-color: #F00;
 }
