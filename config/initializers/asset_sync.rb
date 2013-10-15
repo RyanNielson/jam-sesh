@@ -26,9 +26,3 @@ AssetSync.configure do |config|
   # Fail silently.  Useful for environments such as Heroku
   # config.fail_silently = true
 end
-
-
-  AWS_ACCESS_KEY_ID: "AKIAJI4MEOWJTIT6NG3Q"
-  AWS_SECRET_ACCESS_KEY: "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"
-  FOG_DIRECTORY: "jam-sesh"
-  FOG_PROVIDER: "AWS"
