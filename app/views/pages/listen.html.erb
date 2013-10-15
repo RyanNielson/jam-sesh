@@ -1,7 +1,7 @@
 <script type="text/javascript">
   var audioBuffers = new Object();
   var audioContext;
-  var pusher = new Pusher('cb0d48e70b7bd9b4c14c');
+  var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>");
   var channel = pusher.subscribe('notes');
   var pad_channel = pusher.subscribe('pads');
 
@@ -17,9 +17,9 @@
     }
   });
 
-  window.onload = init;
+  window.onload = initAudio;
   
-  function init() {
+  function initAudio() {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     audioContext = new AudioContext();
 
