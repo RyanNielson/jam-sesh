@@ -18,3 +18,4 @@
 /config/environment_vars.yml
 .DS_Store
 /.vagrant
+/public/assets
