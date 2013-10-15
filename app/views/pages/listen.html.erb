@@ -1,7 +1,7 @@
 <script type="text/javascript">
   var audioBuffers = new Object();
   var audioContext;
-  var pusher = new Pusher('cb0d48e70b7bd9b4c14c');
+  var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>");
   var channel = pusher.subscribe('notes');
   var pad_channel = pusher.subscribe('pads');
 
@@ -17,9 +17,9 @@
     }
   });
 
-  window.onload = init;
+  window.onload = initAudio;
   
-  function init() {
+  function initAudio() {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     audioContext = new AudioContext();
 
@@ -59,33 +59,33 @@
     var bufferLoader = new BufferLoader(
       audioContext,
       {
-        s0_0: "/sounds/0/0.mp3",
-        s0_1: "/sounds/0/1.mp3",
-        s0_2: "/sounds/0/2.mp3",
-        s0_3: "/sounds/0/3.mp3",
-        s0_4: "/sounds/0/4.mp3",
-        s0_5: "/sounds/0/5.mp3",
+        s0_0: "<%= asset_path('0/0.mp3') %>",
+        s0_1: "<%= asset_path('0/1.mp3') %>",
+        s0_2: "<%= asset_path('0/2.mp3') %>",
+        s0_3: "<%= asset_path('0/3.mp3') %>",
+        s0_4: "<%= asset_path('0/4.mp3') %>",
+        s0_5: "<%= asset_path('0/5.mp3') %>",
 
-        s1_0: "/sounds/1/0.mp3",
-        s1_1: "/sounds/1/1.mp3",
-        s1_2: "/sounds/1/2.mp3",
-        s1_3: "/sounds/1/3.mp3",
-        s1_4: "/sounds/1/4.mp3",
-        s1_5: "/sounds/1/5.mp3",
+        s1_0: "<%= asset_path('1/0.mp3') %>",
+        s1_1: "<%= asset_path('1/1.mp3') %>",
+        s1_2: "<%= asset_path('1/2.mp3') %>",
+        s1_3: "<%= asset_path('1/3.mp3') %>",
+        s1_4: "<%= asset_path('1/4.mp3') %>",
+        s1_5: "<%= asset_path('1/5.mp3') %>",
 
-        s2_0: "/sounds/2/0.mp3",
-        s2_1: "/sounds/2/1.mp3",
-        s2_2: "/sounds/2/2.mp3",
-        s2_3: "/sounds/2/3.mp3",
-        s2_4: "/sounds/2/4.mp3",
-        s2_5: "/sounds/2/5.mp3",
+        s2_0: "<%= asset_path('2/0.mp3') %>",
+        s2_1: "<%= asset_path('2/1.mp3') %>",
+        s2_2: "<%= asset_path('2/2.mp3') %>",
+        s2_3: "<%= asset_path('2/3.mp3') %>",
+        s2_4: "<%= asset_path('2/4.mp3') %>",
+        s2_5: "<%= asset_path('2/5.mp3') %>",
 
-        s3_0: "/sounds/3/0.mp3",
-        s3_1: "/sounds/3/1.mp3",
-        s3_2: "/sounds/3/2.mp3",
-        s3_3: "/sounds/3/3.mp3",
-        s3_4: "/sounds/3/4.mp3",
-        s3_5: "/sounds/3/5.mp3"
+        s3_0: "<%= asset_path('3/0.mp3') %>",
+        s3_1: "<%= asset_path('3/1.mp3') %>",
+        s3_2: "<%= asset_path('3/2.mp3') %>",
+        s3_3: "<%= asset_path('3/3.mp3') %>",
+        s3_4: "<%= asset_path('3/4.mp3') %>",
+        s3_5: "<%= asset_path('3/5.mp3') %>"
       },
       finishedLoading
       );
