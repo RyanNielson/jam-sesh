@@ -1,4 +1,5 @@
 JamSesh::Application.routes.draw do
+  post "pusher/auth"
   get "listen" => "pages#listen", as: "listen"
   get "accelerometer" => "pages#accelerometer", as: "accelerometer"
   post "submit_note" => "pages#submit_note", as: "submit_note"
