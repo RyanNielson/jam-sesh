@@ -24,23 +24,24 @@
     audioContext = new AudioContext();
 
     var context = new webkitAudioContext();
+    var vol = 0.25;
 
     window.tones = 
         [
             {
                 type : 0,
                 freq : 220,
-                amp : 1
+                amp : 1 * vol
             },
             {
                 type : 3,
                 freq : 293.66,
-                amp : 0.5
+                amp : 0.5 * vol
             },
             {
                 type : 3,
                 freq : 392.00,
-                amp : 0.5
+                amp : 0.5 * vol
             },
         ];
 
