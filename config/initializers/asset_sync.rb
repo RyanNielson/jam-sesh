@@ -1,10 +1,10 @@
 AssetSync.configure do |config|
-  config.fog_provider = 'AWS'
-  config.aws_access_key_id = "AKIAJI4MEOWJTIT6NG3Q"
-  config.aws_secret_access_key = "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"
+  config.fog_provider = "AWS"
+  config.aws_access_key_id = ENV["AWS_ACCESS_KEY_ID"]
+  config.aws_secret_access_key = ENV["AWS_SECRET_ACCESS_KEY"]
   # To use AWS reduced redundancy storage.
   # config.aws_reduced_redundancy = true
-  config.fog_directory = "jam-sesh"
+  config.fog_directory = ENV["FOG_DIRECTORY"]
 
   # Invalidate a file on a cdn after uploading files
   # config.cdn_distribution_id = "12345"
@@ -26,3 +26,9 @@ AssetSync.configure do |config|
   # Fail silently.  Useful for environments such as Heroku
   # config.fail_silently = true
 end
+
+
+  AWS_ACCESS_KEY_ID: "AKIAJI4MEOWJTIT6NG3Q"
+  AWS_SECRET_ACCESS_KEY: "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"
+  FOG_DIRECTORY: "jam-sesh"
+  FOG_PROVIDER: "AWS"
