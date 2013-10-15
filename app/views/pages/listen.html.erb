@@ -6,7 +6,6 @@
   var pad_channel = pusher.subscribe('pads');
 
   channel.bind('note_played', function(data) {
-    console.log(audioBuffers);
     playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note]);
   });
   pad_channel.bind('pad_change', function(data) {
@@ -110,10 +109,8 @@
   }
 
   function finishedLoading(bufferList) {
-    console.log('word!');
     for (var key in bufferList){
       audioBuffers[key] = bufferList[key];
     }
-    console.log(audioBuffers);
   }
 </script>
