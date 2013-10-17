@@ -19,9 +19,16 @@
       console.log($item.attr('class'));
       $item.addClass('visualize-loaded');
       $($item).animate({
-        top: '200%'
-      }, 3000, function(){
-        $item.remove();
+        width: '60px',
+        height: '60px',
+        marginLeft: '-15px',
+        marginTop: '-15px'
+      }, 200, function(){
+        $($item).animate({
+          top: '200%'
+        }, 3000, function(){
+          $item.remove();
+        });
       });
       console.log($item.attr('class'));
       playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note]);
