@@ -113,6 +113,9 @@ html, body, .page-wrap {
     top: 3px;
     transform: scale(0.975);
     -webkit-transform: scale(0.975);
+    -moz-transform: scale(0.975);
+    -ms-transform: scale(0.975);
+    -o-transform: scale(0.975);
     &:after {
       @include transition(all,0.1s,0s);
       box-shadow: 0 0 30px rgba(255,255,255,0.6), inset 0 0 30px rgba(255,255,255,0.2), inset 0 0 20px rgba(255,255,255,0.05);
@@ -266,6 +269,57 @@ html, body, .page-wrap {
 
   .page-wrap {
     background-position: center -2px;
+  }
+
+  .note {
+    &:hover {
+      top: 3px;
+      transform: scale(0.975);
+      -webkit-transform: scale(0.975);
+      -moz-transform: scale(0.975);
+      -ms-transform: scale(0.975);
+      -o-transform: scale(0.975);
+    }
+  }
+
+  // Instrument 0
+  .instrument-0 {
+    &.note {
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+      &:hover {
+        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-1,20%);
+      }
+    }
+  }
+
+  // Instrument 1
+  .instrument-1 {
+    &.note {
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+      &:hover {
+        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-2,20%);
+      }
+    }
+  }
+
+  // Instrument 2
+  .instrument-2 {
+    &.note {
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+      &:hover {
+        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-3,20%);
+      }
+    }
+  }
+
+  // Instrument 3
+  .instrument-3 {
+    &.note {
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+      &:hover {
+        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-4,20%);
+      }
+    }
   }
 
 }
