@@ -21,14 +21,26 @@ $color-4: saturate(#55c8fe,10%); // Blue
   outline: none;
 }
 
+#full-bg {
+  height: auto;
+  left: 0;
+  min-height: 100%;
+  min-width: 1024px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
 body {
-  background: transparent image-url('noise.jpg') no-repeat;
-  // background-attachment: fixed;
-  background-size: cover;
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  -ms-background-size: cover;
-  -o-background-size: cover;
+  // background: transparent image-url('carbon.jpg') no-repeat;
+  // // background-attachment: fixed;
+  // background-size: cover;
+  // -moz-background-size: cover;
+  // -webkit-background-size: cover;
+  // -ms-background-size: cover;
+  // -o-background-size: cover;
+  background: black;
 }
 
 #surface {
