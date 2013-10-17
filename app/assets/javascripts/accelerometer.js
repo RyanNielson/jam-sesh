@@ -8,7 +8,7 @@ var winW, winH;
 var lastOrientation;
 var animationId;
 //var notes = [0, 2, 3, 5, 7];
-var notes = [0, 5, 7, 12];
+var notes = [0, 0, 2, 4, 5, 5, 7, 7];
 
 
 var baseNote = 440;

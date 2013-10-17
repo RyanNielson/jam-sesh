@@ -12,6 +12,7 @@
     // window.oscillator1.frequency.value = 440 * Math.pow(Math.pow(2,data.pad),1/12)
     // window.oscillator2.frequency.value = 450 * Math.pow(Math.pow(2,data.pad),1/12)
     // window.oscillator3.frequency.value = 460 * Math.pow(Math.pow(2,data.pad),1/12)
+    console.log(data);
     for(var i = 0; i<window.tones.length; i++){
       window.tones[i].osc.frequency.value = window.tones[i].freq * Math.pow(Math.pow(2,data.pad),1/12);
     }
@@ -34,42 +35,75 @@
                 amp : 1 * vol
             },
             {
-                type : 3,
+                type : 0,
                 freq : 293.66,
                 amp : 0.5 * vol
             },
             {
-                type : 3,
+                type : 0,
                 freq : 392.00,
                 amp : 0.5 * vol
             },
             {
-                type : 1,
+                type : 0,
                 freq : 440,
-                amp : 0.1 * vol
+                amp : 1 * vol
             },
             {
-                type : 3,
+                type : 0,
+                freq : 441,
+                amp : 1 * vol
+            },
+            /*{
+                type : 0,
+                freq : 446,
+                amp : 1 * vol
+            },
+            {
+                type : 0,
+                freq : 445,
+                amp : 1 * vol
+            },*/
+            {
+                type : 0,
+                freq : 219,
+                amp : 0.2 * vol
+            },
+            {
+                type : 0,
+                freq : 221,
+                amp : 0.2 * vol
+            },
+            {
+                type : 0,
                 freq : 392.00,
                 amp : 0.5 * vol
             },
             {
-                type : 2,
+                type : 0,
                 freq : 55,
                 amp : 0.25 * vol
             }
         ];
 
+    window.filter = context.createBiquadFilter();
+    window.filter.type = 'bandpass';
+    window.filter.connect(context.destination);
     for(var i = 0; i<tones.length; i++){
         tones[i].osc = context.createOscillator();
         tones[i].osc.type = tones[i].type;
         tones[i].osc.frequency.value = tones[i].freq;
         tones[i].gain = context.createGainNode();
-        tones[i].gain.connect(context.destination);
+        //tones[i].gain.connect(context.destination);
+        tones[i].gain.connect(window.filter);
         tones[i].gain.gain.value = tones[i].amp;
         tones[i].osc.connect(tones[i].gain);
+        //tones[i].osc.connect(window.filter);
         tones[i].osc.start(0);
     }
+
+    
+    var context = new webkitAudioContext();
 
     var bufferLoader = new BufferLoader(
       audioContext,
