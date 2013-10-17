@@ -4,10 +4,26 @@
   var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>");
   var pad_channel = pusher.subscribe('pads');
   var privateChannel = pusher.subscribe('private-notes');
+  var markers = [];
 
   privateChannel.bind('pusher:subscription_succeeded', function() {
     console.log("subscribed");
     privateChannel.bind('client-note_played', function(data) {
+      $item = $('<div>').addClass('visualize instrument-'+data.instrument+' note-' + data.note);
+      $item.css({
+        position: 'absolute',
+        left: (Math.random() * 100) + '%',
+        top: (Math.random() * 100) + '%'
+      });
+      $('.container').append($item);
+      console.log($item.attr('class'));
+      $item.addClass('visualize-loaded');
+      $($item).animate({
+        top: '200%'
+      }, 3000, function(){
+        $item.remove();
+      });
+      console.log($item.attr('class'));
       playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note]);
     });
   });
@@ -103,7 +119,7 @@
         tones[i].gain.gain.value = tones[i].amp;
         tones[i].osc.connect(tones[i].gain);
         //tones[i].osc.connect(window.filter);
-        tones[i].osc.start(0);
+        //tones[i].osc.start(0);
     }
 
     
