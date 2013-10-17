@@ -9,8 +9,11 @@
 </head>
 <body>
 
-<div class="container">
-  <%= yield %>
+<div class="page-wrap">
+	<div class="container">
+	  <img src="<%= asset_path('logo3.png') %>" alt="Jamsesh" class="logo">
+	  <%= yield %>
+	</div>
 </div>
 
 </body>

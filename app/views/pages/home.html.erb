@@ -1,24 +1,42 @@
 <div class="row">
   <div class="col col-xs-6 col-sm-6 col-md-6 ">
-    <%= button_to submit_note_path(instrument: @instrument, note: "0"), class: "note instrument-#{@instrument} note-0", remote: true do %><% end %>
+    <button class="note instrument-<%= @instrument %> note-0" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '0'}); return false;"></button>
   </div>
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <%= button_to submit_note_path(instrument: @instrument, note: "1"), class: "note instrument-#{@instrument} note-1", remote: true do %><% end %>
+    <button class="note instrument-<%= @instrument %> note-1" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '1'}); return false;"></button>
+  </div>
+  <div class="col col-xs-6 col-sm-6 col-md-6">
+    <button class="note instrument-<%= @instrument %> note-2" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '2'}); return false;"></button>
   </div>
 </div>
 <div class="row">
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <%= button_to submit_note_path(instrument: @instrument, note: "2"), class: "note instrument-#{@instrument} note-2", remote: true do %><% end %>
+    <button class="note instrument-<%= @instrument %> note-3" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '3'}); return false;"></button>
   </div>
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <%= button_to submit_note_path(instrument: @instrument, note: "3"), class: "note instrument-#{@instrument} note-3", remote: true do %><% end %>
+    <button class="note instrument-<%= @instrument %> note-4" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '4'}); return false;"></button>
+  </div>
+  <div class="col col-xs-6 col-sm-6 col-md-6">
+    <button class="note instrument-<%= @instrument %> note-5" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '5'}); return false;"></button>
   </div>
 </div>
-<div class="row">
-  <div class="col col-xs-6 col-sm-6 col-md-6">
-    <%= button_to submit_note_path(instrument: @instrument, note: "4"), class: "note instrument-#{@instrument} note-4", remote: true do %><% end %>
-  </div>
-  <div class="col col-xs-6 col-sm-6 col-md-6">
-    <%= button_to submit_note_path(instrument: @instrument, note: "5"), class: "note instrument-#{@instrument} note-5", remote: true do %><% end %>
-  </div>
-</div>
+<!-- <div class="row">
+  
+</div> -->
+
+<script type="text/javascript">
+  var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>");
+
+  Pusher.log = function(message) {
+    if (window.console && window.console.log) {
+      window.console.log(message);
+    }
+  };
+
+  var privateChannel = pusher.subscribe('private-notes');
+  privateChannel.bind('pusher:subscription_succeeded', function() {
+    console.log("subscribed");
+  });
+</script>
+
+<!-- <a href="#" onclick="privateChannel.trigger('client-note_test', { instrument: '0', note: '0'}); return false;">TEST</a> -->

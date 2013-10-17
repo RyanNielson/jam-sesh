@@ -2,12 +2,16 @@
   var audioBuffers = new Object();
   var audioContext;
   var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>");
-  var channel = pusher.subscribe('notes');
   var pad_channel = pusher.subscribe('pads');
+  var privateChannel = pusher.subscribe('private-notes');
 
-  channel.bind('note_played', function(data) {
-    playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note]);
+  privateChannel.bind('pusher:subscription_succeeded', function() {
+    console.log("subscribed");
+    privateChannel.bind('client-note_played', function(data) {
+      playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note]);
+    });
   });
+
   pad_channel.bind('pad_change', function(data) {
     // window.oscillator1.frequency.value = 440 * Math.pow(Math.pow(2,data.pad),1/12)
     // window.oscillator2.frequency.value = 450 * Math.pow(Math.pow(2,data.pad),1/12)

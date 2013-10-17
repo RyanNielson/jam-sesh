@@ -70,7 +70,7 @@ function doLayout(event) {
     	size: size,
     	x: (winW-size)/2,
     	y: (winH-size)/2,
-    	color: 'rgba(0,0,0,0.5)'
+    	color: '#c6fe7e'
     }
     renderDot();
 }

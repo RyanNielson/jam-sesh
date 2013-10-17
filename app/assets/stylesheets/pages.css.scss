@@ -1,20 +1,73 @@
+// Base Colors
+
+$color-1: saturate(#FF0066,1%);  // Pink
+$color-2: saturate(#cf7efe,10%); // Purple
+$color-3: saturate(#c6fe7e,20%); // Green
+$color-4: saturate(#55c8fe,10%); // Blue
+
+// Mixins
+
+@mixin transition($property,$duration,$delay) {
+  transition: $property $duration ease $delay;
+  -moz-transition: $property $duration ease $delay;
+  -webkit-transition: $property $duration ease $delay;
+  -o-transition: $property $duration ease $delay;
+  -ms-transition: $property $duration ease $delay;
+}
+
+// Layout
+
 * {
   outline: none;
 }
-html, body {
+
+body {
+  background: transparent image-url('noise.jpg') no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+}
+
+#surface {
+  width: 100%;
+  height: 81%;
+}
+
+.logo {
+  padding: 15px 30px;
+  max-width: 750px;
+  max-height: 20%;
+}
+
+img {
+  max-width: 100%;
+}
+
+html, body, .page-wrap {
     height: 100%;
     padding: 0;
     margin: 0;
+}
+
+.page-wrap {
+    background: transparent image-url('colorbar.jpg') repeat-x center top;
+    width: 100%;
+    float: left;
+    background-size: 100% 5px;
 }
 
 .container {
     width: 100%;
     height: 100%;
     text-align: center;
+    padding: 20px;
 }
 
 .row {
-  height:33%;
+  height: 40%;
 }
 
 .row:last-child {
@@ -32,102 +85,246 @@ html, body {
 }
 
 .col {
-  padding: 0;
+  padding: 10px;
+  width: 33.3%;
 }
 
-.instrument-0.note-0 {
-    background-color: #000;
+// Instruments
+
+.note {
+  @include transition(all,0.2s,0s);
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0.75);
+  position: relative;
+  overflow: hidden;
+  &:after {
+    display: block;
+    opacity: 0;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 120px;
+    content: " ";
+    left: 50%;
+    top: 50%;
+    @include transition(all,0.35s,0s);
+    margin: -40px 0 0 -40px;
+    box-shadow: 0 0 30px rgba(255,255,255,0.1), inset 0 0 25px rgba(255,255,255,0.05), inset 0 0 10px rgba(255,255,255,0.05);
+  }
+  &:active {
+    @include transition(all,0.2s,0s);
+    top: 3px;
+    transform: scale(0.975);
+    -webkit-transform: scale(0.975);
+    -moz-transform: scale(0.975);
+    -ms-transform: scale(0.975);
+    -o-transform: scale(0.975);
+    &:after {
+      @include transition(all,0.1s,0s);
+      box-shadow: 0 0 30px rgba(255,255,255,0.6), inset 0 0 30px rgba(255,255,255,0.2), inset 0 0 20px rgba(255,255,255,0.05);
+      opacity: 1;
+      -webkit-transform: scale(2.25);
+    }
+  }
+  &.note-5:active {
+    &:after {
+      opacity: 0.7;
+    }
+  }
 }
 
-.instrument-0.note-1 {
-    background-color: #333;
+// Instrument 0
+.instrument-0 {
+  &.note {
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+    &:active {
+      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-1,20%);
+    }
+  }
+  &.note-0 {
+    background: $color-1;
+  }
+  &.note-1 {
+    background: $color-1;
+  }
+  &.note-2 {
+    background: $color-1;
+  }
+  &.note-3 {
+    background: $color-1;
+  }
+  &.note-4 {
+    background: $color-1;
+  }
+  &.note-5 {
+    background: $color-1;
+  }
 }
 
-.instrument-0.note-2 {
-    background-color: #666;
+// Instrument 1
+.instrument-1 {
+  &.note {
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+    &:active {
+      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-2,20%);
+    }
+  }
+  &.note-0 {
+    background: $color-2;
+  }
+  &.note-1 {
+    background: $color-2;
+  }
+  &.note-2 {
+    background: $color-2;
+  }
+  &.note-3 {
+    background: $color-2;
+  }
+  &.note-4 {
+    background: $color-2;
+  }
+  &.note-5 {
+    background: $color-2;
+  }
 }
 
-.instrument-0.note-3 {
-    background-color: #999;
+// Instrument 2
+.instrument-2 {
+  &.note {
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+    &:active {
+      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-3,20%);
+    }
+  }
+  &.note-0 {
+    background: $color-3;
+  }
+  &.note-1 {
+    background: $color-3;
+  }
+  &.note-2 {
+    background: $color-3;
+  }
+  &.note-3 {
+    background: $color-3;
+  }
+  &.note-4 {
+    background: $color-3;
+  }
+  &.note-5 {
+    background: $color-3;
+  }
 }
 
-.instrument-0.note-4 {
-    background-color: #CCC;
+// Instrument 3
+.instrument-3 {
+  &.note {
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+    &:active {
+      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-4,20%);
+    }
+  }
+  &.note-0 {
+    background: $color-4;
+  }
+  &.note-1 {
+    background: $color-4;
+  }
+  &.note-2 {
+    background: $color-4;
+  }
+  &.note-3 {
+    background: $color-4;
+  }
+  &.note-4 {
+    background: $color-4;
+  }
+  &.note-5 {
+    background: $color-4;
+  }
 }
 
-.instrument-0.note-5 {
-    background-color: #FFF;
+@media(max-width:680px) {
+
+  .logo {
+    max-width: 100%;
+    max-height: none;
+    padding: 10px 20px;
+    width: auto !important;
+  }
+
+  .row {
+    height: 27%;
+  }
+
+  .col {
+    width: 50%;
+  }
+
 }
 
-.instrument-1.note-0 {
-    background-color: #000;
-}
+@media(max-width:480px) {
 
-.instrument-1.note-1 {
-    background-color: #003;
-}
+  .col {
+    padding: 5px;
+  }
 
-.instrument-1.note-2 {
-    background-color: #006;
-}
+  .page-wrap {
+    background-position: center -2px;
+  }
 
-.instrument-1.note-3 {
-    background-color: #009;
-}
+  .note {
+    &:hover {
+      top: 3px;
+      transform: scale(0.975);
+      -webkit-transform: scale(0.975);
+      -moz-transform: scale(0.975);
+      -ms-transform: scale(0.975);
+      -o-transform: scale(0.975);
+    }
+  }
 
-.instrument-1.note-4 {
-    background-color: #00C;
-}
+  // Instrument 0
+  .instrument-0 {
+    &.note {
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+      &:hover {
+        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-1,20%);
+      }
+    }
+  }
 
-.instrument-1.note-5 {
-    background-color: #00F;
-}
+  // Instrument 1
+  .instrument-1 {
+    &.note {
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+      &:hover {
+        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-2,20%);
+      }
+    }
+  }
 
+  // Instrument 2
+  .instrument-2 {
+    &.note {
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+      &:hover {
+        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-3,20%);
+      }
+    }
+  }
 
-.instrument-2.note-0 {
-    background-color: #000;
-}
+  // Instrument 3
+  .instrument-3 {
+    &.note {
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+      &:hover {
+        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-4,20%);
+      }
+    }
+  }
 
-.instrument-2.note-1 {
-    background-color: #030;
-}
-
-.instrument-2.note-2 {
-    background-color: #060;
-}
-
-.instrument-2.note-3 {
-    background-color: #090;
-}
-
-.instrument-2.note-4 {
-    background-color: #0C0;
-}
-
-.instrument-2.note-5 {
-    background-color: #0F0;
-}
-
-.instrument-3.note-0 {
-    background-color: #000;
-}
-
-.instrument-3.note-1 {
-    background-color: #300;
-}
-
-.instrument-3.note-2 {
-    background-color: #600;
-}
-
-.instrument-3.note-3 {
-    background-color: #900;
-}
-
-.instrument-3.note-4 {
-    background-color: #C00;
-}
-
-.instrument-3.note-5 {
-    background-color: #F00;
 }
