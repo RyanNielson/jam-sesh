@@ -2,7 +2,7 @@
 
 $color-1: saturate(#FF0066,1%);  // Pink
 $color-2: saturate(#cf7efe,10%); // Purple
-$color-3: saturate(#c6fe7e,10%); // Green
+$color-3: saturate(#c6fe7e,20%); // Green
 $color-4: saturate(#55c8fe,10%); // Blue
 
 // Mixins
@@ -32,8 +32,8 @@ body {
 }
 
 .logo {
-  padding: 30px;
-  max-width: 550px;
+  padding: 15px 30px;
+  max-width: 750px;
   max-height: 20%;
 }
 
@@ -41,10 +41,17 @@ img {
   max-width: 100%;
 }
 
-html, body {
+html, body, .page-wrap {
     height: 100%;
     padding: 0;
     margin: 0;
+}
+
+.page-wrap {
+    background: transparent url('colorbar.jpg') repeat-x center top;
+    width: 100%;
+    float: left;
+    background-size: 100% 5px;
 }
 
 .container {
@@ -123,7 +130,7 @@ html, body {
 // Instrument 0
 .instrument-0 {
   &.note {
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
     &:active {
       box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-1,20%);
     }
@@ -132,26 +139,26 @@ html, body {
     background: $color-1;
   }
   &.note-1 {
-    background: darken($color-1,10%);
+    background: $color-1;
   }
   &.note-2 {
-    background: darken($color-1,20%);
+    background: $color-1;
   }
   &.note-3 {
-    background: darken($color-1,25%);
+    background: $color-1;
   }
   &.note-4 {
-    background: darken($color-1,30%);
+    background: $color-1;
   }
   &.note-5 {
-    background: darken($color-1,35%);
+    background: $color-1;
   }
 }
 
 // Instrument 1
 .instrument-1 {
   &.note {
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
     &:active {
       box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-2,20%);
     }
@@ -160,26 +167,26 @@ html, body {
     background: $color-2;
   }
   &.note-1 {
-    background: darken($color-2,10%);
+    background: $color-2;
   }
   &.note-2 {
-    background: darken($color-2,20%);
+    background: $color-2;
   }
   &.note-3 {
-    background: darken($color-2,30%);
+    background: $color-2;
   }
   &.note-4 {
-    background: darken($color-2,40%);
+    background: $color-2;
   }
   &.note-5 {
-    background: darken($color-2,50%);
+    background: $color-2;
   }
 }
 
 // Instrument 2
 .instrument-2 {
   &.note {
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
     &:active {
       box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-3,20%);
     }
@@ -188,26 +195,26 @@ html, body {
     background: $color-3;
   }
   &.note-1 {
-    background: darken($color-3,10%);
+    background: $color-3;
   }
   &.note-2 {
-    background: darken($color-3,20%);
+    background: $color-3;
   }
   &.note-3 {
-    background: darken($color-3,30%);
+    background: $color-3;
   }
   &.note-4 {
-    background: darken($color-3,40%);
+    background: $color-3;
   }
   &.note-5 {
-    background: darken($color-3,50%);
+    background: $color-3;
   }
 }
 
 // Instrument 3
 .instrument-3 {
   &.note {
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
     &:active {
       box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-4,20%);
     }
@@ -216,19 +223,19 @@ html, body {
     background: $color-4;
   }
   &.note-1 {
-    background: darken($color-4,10%);
+    background: $color-4;
   }
   &.note-2 {
-    background: darken($color-4,20%);
+    background: $color-4;
   }
   &.note-3 {
-    background: darken($color-4,30%);
+    background: $color-4;
   }
   &.note-4 {
-    background: darken($color-4,40%);
+    background: $color-4;
   }
   &.note-5 {
-    background: darken($color-4,50%);
+    background: $color-4;
   }
 }
 
@@ -242,7 +249,7 @@ html, body {
   }
 
   .row {
-    height: 28%;
+    height: 27%;
   }
 
   .col {
@@ -255,6 +262,10 @@ html, body {
 
   .col {
     padding: 5px;
+  }
+
+  .page-wrap {
+    background-position: center -2px;
   }
 
 }
