@@ -8,7 +8,7 @@ var winW, winH;
 var lastOrientation;
 var animationId;
 //var notes = [0, 2, 3, 5, 7];
-var notes = [0, 5, 7, 12];
+var notes = [0, 0, 2, 4, 5, 5, 7, 7];
 
 
 var baseNote = 440;
@@ -70,7 +70,7 @@ function doLayout(event) {
     	size: size,
     	x: (winW-size)/2,
     	y: (winH-size)/2,
-    	color: 'rgba(0,0,0,0.5)'
+    	color: '#c6fe7e'
     }
     renderDot();
 }
