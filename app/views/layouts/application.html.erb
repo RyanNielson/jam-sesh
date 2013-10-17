@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Jam Sesh</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application", "//js.pusher.com/2.1/pusher.min.js" %>
   <%= csrf_meta_tags %>
@@ -10,6 +10,7 @@
 <body>
 
 <div class="page-wrap">
+	<img src="<%= asset_path('carbon.jpg') %>" alt="Jamsesh" id="full-bg">
 	<div class="container">
 	  <img src="<%= asset_path('logo3.png') %>" alt="Jamsesh" class="logo">
 	  <%= yield %>

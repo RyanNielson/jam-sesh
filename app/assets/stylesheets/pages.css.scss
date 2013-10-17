@@ -21,14 +21,26 @@ $color-4: saturate(#55c8fe,10%); // Blue
   outline: none;
 }
 
+#full-bg {
+  height: auto;
+  left: 0;
+  min-height: 100%;
+  min-width: 1024px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
 body {
-  background: transparent image-url('noise.jpg') no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  -ms-background-size: cover;
-  -o-background-size: cover;
+  // background: transparent image-url('carbon.jpg') no-repeat;
+  // // background-attachment: fixed;
+  // background-size: cover;
+  // -moz-background-size: cover;
+  // -webkit-background-size: cover;
+  // -ms-background-size: cover;
+  // -o-background-size: cover;
+  background: black;
 }
 
 #surface {
@@ -50,13 +62,15 @@ html, body, .page-wrap {
     height: 100%;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
 .page-wrap {
     background: transparent image-url('colorbar.jpg') repeat-x center top;
-    width: 100%;
     float: left;
     background-size: 100% 5px;
+    overflow: hidden;
+    position: relative;
 }
 
 .container {
@@ -89,10 +103,119 @@ html, body, .page-wrap {
   width: 33.3%;
 }
 
+@-webkit-keyframes spin-decay {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes scale-decay {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -moz-transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(4);
+    transform: scale(4);
+    -ms-transform: scale(4);
+    -o-transform: scale(4);
+    -moz-transform: scale(4);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -moz-transform: scale(1);
+  }
+}
+
+@-moz-keyframes spin-decay {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes spin-decay {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-decay {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+  }
+}
+
+// Visualizers
+
+.visualize {
+  width: 30px;
+  height: 30px;
+  // border-radius: 120px;
+  border-radius: 3px;
+  opacity: 0.85;
+  -webkit-animation: spin-decay 5s infinite linear;
+  -moz-animation: spin-decay 5s infinite linear;
+  -o-animation: spin-decay 5s infinite linear;
+  animation: spin-decay 5s infinite linear;
+  &.visualize-loaded {
+    
+  }
+}
+
 // Instruments
 
 .note {
-  @include transition(all,0.2s,0s);
+  @include transition(all,0.1s,0s);
   position: relative;
   border-radius: 5px;
   border: 1px solid rgba(0,0,0,0.75);
@@ -114,8 +237,7 @@ html, body, .page-wrap {
     box-shadow: 0 0 30px rgba(255,255,255,0.1), inset 0 0 25px rgba(255,255,255,0.05), inset 0 0 10px rgba(255,255,255,0.05);
   }
   &:active {
-    @include transition(all,0.2s,0s);
-    top: 3px;
+    @include transition(all,0.1s,0s);
     transform: scale(0.975);
     -webkit-transform: scale(0.975);
     -moz-transform: scale(0.975);
@@ -140,7 +262,7 @@ html, body, .page-wrap {
   &.note {
     box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
     &:active {
-      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-1,20%);
+      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
     }
   }
   &.note-0 {
@@ -168,7 +290,7 @@ html, body, .page-wrap {
   &.note {
     box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
     &:active {
-      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-2,20%);
+      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
     }
   }
   &.note-0 {
@@ -196,7 +318,7 @@ html, body, .page-wrap {
   &.note {
     box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
     &:active {
-      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-3,20%);
+      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
     }
   }
   &.note-0 {
@@ -224,7 +346,7 @@ html, body, .page-wrap {
   &.note {
     box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
     &:active {
-      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-4,20%);
+      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
     }
   }
   &.note-0 {
@@ -257,7 +379,7 @@ html, body, .page-wrap {
   }
 
   .row {
-    height: 27%;
+    height: 25%;
   }
 
   .col {
@@ -278,7 +400,6 @@ html, body, .page-wrap {
 
   .note {
     &:hover {
-      top: 3px;
       transform: scale(0.975);
       -webkit-transform: scale(0.975);
       -moz-transform: scale(0.975);
@@ -292,7 +413,7 @@ html, body, .page-wrap {
     &.note {
       box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
       &:hover {
-        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-1,20%);
+        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
       }
     }
   }
@@ -302,7 +423,7 @@ html, body, .page-wrap {
     &.note {
       box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
       &:hover {
-        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-2,20%);
+        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
       }
     }
   }
@@ -312,7 +433,7 @@ html, body, .page-wrap {
     &.note {
       box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
       &:hover {
-        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-3,20%);
+        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
       }
     }
   }
@@ -322,14 +443,9 @@ html, body, .page-wrap {
     &.note {
       box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
       &:hover {
-        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2), 0 0 20px darken($color-4,20%);
+        box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
       }
     }
   }
 
-}
-
-.visualize{
-  width: 60px;
-  height: 60px;
 }
