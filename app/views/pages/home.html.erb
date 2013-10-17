@@ -5,16 +5,14 @@
   <div class="col col-xs-6 col-sm-6 col-md-6">
     <button class="note instrument-<%= @instrument %> note-1" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '1'}); return false;"></button>
   </div>
-</div>
-<div class="row">
   <div class="col col-xs-6 col-sm-6 col-md-6">
     <button class="note instrument-<%= @instrument %> note-2" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '2'}); return false;"></button>
   </div>
+</div>
+<div class="row">
   <div class="col col-xs-6 col-sm-6 col-md-6">
     <button class="note instrument-<%= @instrument %> note-3" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '3'}); return false;"></button>
   </div>
-</div>
-<div class="row">
   <div class="col col-xs-6 col-sm-6 col-md-6">
     <button class="note instrument-<%= @instrument %> note-4" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '4'}); return false;"></button>
   </div>
@@ -22,6 +20,9 @@
     <button class="note instrument-<%= @instrument %> note-5" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '5'}); return false;"></button>
   </div>
 </div>
+<!-- <div class="row">
+  
+</div> -->
 
 <script type="text/javascript">
   var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>");
