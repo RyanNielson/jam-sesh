@@ -22,13 +22,18 @@ $color-4: saturate(#55c8fe,10%); // Blue
 }
 
 body {
-  background: transparent url('noise.jpg') no-repeat;
+  background: transparent image-url('noise.jpg') no-repeat;
   background-attachment: fixed;
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
   -ms-background-size: cover;
   -o-background-size: cover;
+}
+
+#surface {
+  width: 100%;
+  height: 81%;
 }
 
 .logo {
@@ -48,7 +53,7 @@ html, body, .page-wrap {
 }
 
 .page-wrap {
-    background: transparent url('colorbar.jpg') repeat-x center top;
+    background: transparent image-url('colorbar.jpg') repeat-x center top;
     width: 100%;
     float: left;
     background-size: 100% 5px;
