@@ -1,9 +1,9 @@
 // Base Colors
 
-$color-1: saturate(#FF0066,1%);  // Pink
-$color-2: saturate(#cf7efe,10%); // Purple
-$color-3: saturate(#c6fe7e,20%); // Green
-$color-4: saturate(#55c8fe,10%); // Blue
+$color-1: #FF0066;  // Pink
+$color-2: #a82bf1; // Purple
+$color-3: #c5fd2d; // Green
+$color-4: #26ddfe; // Blue
 
 // Mixins
 
@@ -372,7 +372,7 @@ html, body, .page-wrap {
 @media(max-width:680px) {
 
   .logo {
-    max-width: 100%;
+    max-width: 50%;
     max-height: none;
     padding: 10px 20px;
     width: auto !important;
@@ -390,6 +390,10 @@ html, body, .page-wrap {
 
 @media(max-width:480px) {
 
+  .logo {
+    max-width: 75%;
+  }
+
   .col {
     padding: 5px;
   }
@@ -405,6 +409,12 @@ html, body, .page-wrap {
       -moz-transform: scale(0.975);
       -ms-transform: scale(0.975);
       -o-transform: scale(0.975);
+      &:after {
+        @include transition(all,0.1s,0s);
+        box-shadow: 0 0 30px rgba(255,255,255,0.6), inset 0 0 30px rgba(255,255,255,0.2), inset 0 0 20px rgba(255,255,255,0.05);
+        opacity: 1;
+        -webkit-transform: scale(1.75);
+      }
     }
   }
 
