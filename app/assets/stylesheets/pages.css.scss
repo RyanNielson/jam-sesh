@@ -1,9 +1,9 @@
 // Base Colors
 
-$color-1: saturate(#FF0066,1%);  // Pink
-$color-2: saturate(#cf7efe,10%); // Purple
-$color-3: saturate(#c6fe7e,20%); // Green
-$color-4: saturate(#55c8fe,10%); // Blue
+$color-1: #FF0066; // Pink
+$color-2: #a82bf1; // Purple
+$color-3: #c5fd2d; // Green
+$color-4: #26ddfe; // Blue
 
 // Mixins
 
@@ -33,14 +33,7 @@ $color-4: saturate(#55c8fe,10%); // Blue
 }
 
 body {
-  // background: transparent image-url('carbon.jpg') no-repeat;
-  // // background-attachment: fixed;
-  // background-size: cover;
-  // -moz-background-size: cover;
-  // -webkit-background-size: cover;
-  // -ms-background-size: cover;
-  // -o-background-size: cover;
-  background: black;
+  background: #000;
 }
 
 #surface {
@@ -71,6 +64,24 @@ html, body, .page-wrap {
     background-size: 100% 5px;
     overflow: hidden;
     position: relative;
+    @include transition(all,0.3s,0.1s);
+    // Box Shadow for Accelerometer Glow
+    &.pink {
+      // Pink Top AND Side
+      box-shadow: inset 0 0px 100px -45px rgba(255,0,102,0.85), inset -0px 0 100px -45px rgba(255,0,102,0.85);
+    }
+    &.purple {
+      // Purple Top AND Side
+      box-shadow: inset 0 50px 100px -45px rgba(168,43,241,0.85), inset -50px 0 100px -45px rgba(168,43,241,0.85);
+    }
+    &.green {
+      // Green Top AND Side
+      box-shadow: inset 0 50px 100px -45px rgba(197,253,45,0.85), inset -50px 0 100px -45px rgba(197,253,45,0.85);
+    }
+    &.blue {
+      // Blue Top AND Side
+      box-shadow: inset 0 50px 100px -45px rgba(38,221,254,0.85), inset -50px 0 100px -45px rgba(38,221,254,0.85);
+    }
 }
 
 .container {
@@ -82,20 +93,12 @@ html, body, .page-wrap {
 
 .row {
   height: 40%;
-}
-
-.row:last-child {
-  height:34%;
-}
-
-.row * {
-  height: 100%;
-}
-
-.note {
-  width: 100%;
-  border: none;
-  color: #fff;
+  * {
+    height: 100%;
+  }
+  &:last-child {
+    height: 34%;
+  }
 }
 
 .col {
@@ -195,32 +198,40 @@ html, body, .page-wrap {
   }
 }
 
+// Disco!
+
+// .ball {
+//   max-width: 125px;
+//   position: absolute;
+//   right: 20px;
+//   top: 5px;
+// }
+
 // Visualizers
 
 .visualize {
   width: 30px;
   height: 30px;
-  // border-radius: 120px;
   border-radius: 3px;
   opacity: 0.85;
   -webkit-animation: spin-decay 5s infinite linear;
   -moz-animation: spin-decay 5s infinite linear;
   -o-animation: spin-decay 5s infinite linear;
   animation: spin-decay 5s infinite linear;
-  &.visualize-loaded {
-    
-  }
 }
 
 // Instruments
 
 .note {
+  width: 100%;
+  color: #fff;
   @include transition(all,0.1s,0s);
   position: relative;
-  border-radius: 5px;
+  border-radius: 20px;
   border: 1px solid rgba(0,0,0,0.75);
   position: relative;
   overflow: hidden;
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.6), 0 3px 2px rgba(0,0,0,0.8), inset 2px 2px 1px rgba(255,255,255,0.3);
   &:after {
     display: block;
     opacity: 0;
@@ -234,7 +245,21 @@ html, body, .page-wrap {
     top: 50%;
     @include transition(all,0.35s,0s);
     margin: -40px 0 0 -40px;
-    box-shadow: 0 0 30px rgba(255,255,255,0.1), inset 0 0 25px rgba(255,255,255,0.05), inset 0 0 10px rgba(255,255,255,0.05);
+  }
+  &:before {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    content: " ";
+    top: 0;
+    left: 0;
+    z-index: 500;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0)), to(rgba(255,255,255,0.35)));
+    background-image: -webkit-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,0.35)); 
+    background-image: -moz-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,0.35));
+    background-image: -ms-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,0.35));
+    background-image: -o-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,0.35));
+    border-radius: 20px;
   }
   &:active {
     @include transition(all,0.1s,0s);
@@ -243,6 +268,7 @@ html, body, .page-wrap {
     -moz-transform: scale(0.975);
     -ms-transform: scale(0.975);
     -o-transform: scale(0.975);
+    box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
     &:after {
       @include transition(all,0.1s,0s);
       box-shadow: 0 0 30px rgba(255,255,255,0.6), inset 0 0 30px rgba(255,255,255,0.2), inset 0 0 20px rgba(255,255,255,0.05);
@@ -259,12 +285,6 @@ html, body, .page-wrap {
 
 // Instrument 0
 .instrument-0 {
-  &.note {
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
-    &:active {
-      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
-    }
-  }
   &.note-0 {
     background: $color-1;
   }
@@ -287,12 +307,6 @@ html, body, .page-wrap {
 
 // Instrument 1
 .instrument-1 {
-  &.note {
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
-    &:active {
-      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
-    }
-  }
   &.note-0 {
     background: $color-2;
   }
@@ -315,12 +329,6 @@ html, body, .page-wrap {
 
 // Instrument 2
 .instrument-2 {
-  &.note {
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
-    &:active {
-      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
-    }
-  }
   &.note-0 {
     background: $color-3;
   }
@@ -343,12 +351,6 @@ html, body, .page-wrap {
 
 // Instrument 3
 .instrument-3 {
-  &.note {
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.3), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.1);
-    &:active {
-      box-shadow: inset 0 0 60px rgba(255,255,255,0.4), 0 3px 2px rgba(0,0,0,0.6), inset 2px 2px 1px rgba(255,255,255,0.2);
-    }
-  }
   &.note-0 {
     background: $color-4;
   }
@@ -372,7 +374,7 @@ html, body, .page-wrap {
 @media(max-width:680px) {
 
   .logo {
-    max-width: 100%;
+    max-width: 50%;
     max-height: none;
     padding: 10px 20px;
     width: auto !important;
@@ -390,6 +392,10 @@ html, body, .page-wrap {
 
 @media(max-width:480px) {
 
+  .logo {
+    max-width: 75%;
+  }
+
   .col {
     padding: 5px;
   }
@@ -399,12 +405,22 @@ html, body, .page-wrap {
   }
 
   .note {
+    border-radius: 5px;
+    &:before {
+      border-radius: 5px;
+    }
     &:hover {
       transform: scale(0.975);
       -webkit-transform: scale(0.975);
       -moz-transform: scale(0.975);
       -ms-transform: scale(0.975);
       -o-transform: scale(0.975);
+      &:after {
+        @include transition(all,0.1s,0s);
+        box-shadow: 0 0 30px rgba(255,255,255,0.6), inset 0 0 30px rgba(255,255,255,0.2), inset 0 0 20px rgba(255,255,255,0.05);
+        opacity: 1;
+        -webkit-transform: scale(1.75);
+      }
     }
   }
 
