@@ -35,6 +35,8 @@
     }
   };
 
+  //change to presenceChannel (see listen.html.erb)
+
   var privateChannel = pusher.subscribe('private-notes');
   privateChannel.bind('pusher:subscription_succeeded', function() {
     console.log("subscribed");

@@ -3,36 +3,60 @@
   var audioContext;
   var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>");
   var pad_channel = pusher.subscribe('pads');
+  //change to presenceChannel
+  //subscribe with presence- (http://pusher.com/docs/client_api_guide/client_presence_channels#pusher-member-added)
   var privateChannel = pusher.subscribe('private-notes');
-  var markers = [];
 
   privateChannel.bind('pusher:subscription_succeeded', function() {
     console.log("subscribed");
     privateChannel.bind('client-note_played', function(data) {
+
+      var top = (Math.random() * 100);
+      var left = (Math.random() * 100);
+
       $item = $('<div>').addClass('visualize instrument-'+data.instrument+' note-' + data.note);
       $item.css({
         position: 'absolute',
-        left: (Math.random() * 100) + '%',
-        top: (Math.random() * 100) + '%'
+        left: (left-3) + '%',
+        top: (top+3) + '%'
       });
       $('.container').append($item);
-      console.log($item.attr('class'));
-      $item.addClass('visualize-loaded');
+
       $($item).animate({
         width: '60px',
         height: '60px',
         marginLeft: '-15px',
-        marginTop: '-15px'
+        marginTop: '-15px',
+        top: top + '%',
+        left: left + '%',
       }, 200, function(){
-        $($item).animate({
-          top: '200%'
+        $(this).animate({
+          top: '200%',
+          left: (left + 20) + '%'
         }, 3000, function(){
-          $item.remove();
+          $(this).remove();
         });
       });
       console.log($item.attr('class'));
       playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note]);
     });
+
+    //member add
+    /*
+    channel.bind('pusher:member_added', function(member) {
+      // for example:
+      add_member(member.id, member.info);
+    });
+    */
+
+    //member removed
+    /*
+    channel.bind('pusher:member_removed', function(member) {
+      // for example:
+      remove_member(member.id, member.info);
+      var count = presenceChannel.members.count;
+    });
+    */
   });
 
   pad_channel.bind('pad_change', function(data) {
@@ -122,11 +146,21 @@
         tones[i].osc.frequency.value = tones[i].freq;
         tones[i].gain = context.createGainNode();
         //tones[i].gain.connect(context.destination);
+        
         tones[i].gain.connect(window.filter);
+
         tones[i].gain.gain.value = tones[i].amp;
         tones[i].osc.connect(tones[i].gain);
         //tones[i].osc.connect(window.filter);
         //tones[i].osc.start(0);
+
+        /*tones[i].delay = context.createDelayNode();
+        tones[i].delay.delayTime.value = 0.5;
+        tones[i].gain.connect(tones[i].delay);
+        tones[i].delayGain = context.createGainNode();
+        tones[i].delayGain.gain.value = 1;
+        tones[i].delay.connect(tones[i].delayGain);
+        tones[i].delayGain.connect(window.filter);*/
     }
 
     
