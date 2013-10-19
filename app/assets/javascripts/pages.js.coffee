@@ -6,9 +6,13 @@
   numInstances = Math.ceil(decay / 10) + 1
   gIncrement = 1 / numInstances
   tIncrement = time / 100
-  instances = [];
+  instances = []
+  lastTime = 0
   for i in [0...numInstances]
-    instances.push({time: (i * tIncrement), gain: 1 - (gIncrement * i)})
+    thisTime = i * tIncrement
+    if lastTime < 1
+      instances.push({time: thisTime, gain: 1 - (gIncrement * i)})
+    lastTime = thisTime
 
   #instances
   #instances = [{time: 0, gain: 1}, {time: 0.3, gain: 0.5}, {time: 0.6, gain: 0.25}, {time: 0.9, gain: 0.125}]
