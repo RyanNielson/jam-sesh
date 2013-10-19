@@ -1,33 +1,35 @@
-<div class="row">
+<div class="row" id="pads">
   <div class="col col-xs-6 col-sm-6 col-md-6 ">
-    <button class="note instrument-<%= @instrument %> note-0" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '0'}); return false;"></button>
+    <button class="note instrument-<%= @instrument %> note-0" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '0', time: window.xDelta, decay: window.yDelta}); return false;"></button>
   </div>
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <button class="note instrument-<%= @instrument %> note-1" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '1'}); return false;"></button>
+    <button class="note instrument-<%= @instrument %> note-1" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '1', time: window.xDelta, decay: window.yDelta}); return false;"></button>
   </div>
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <button class="note instrument-<%= @instrument %> note-2" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '2'}); return false;"></button>
+    <button class="note instrument-<%= @instrument %> note-2" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '2', time: window.xDelta, decay: window.yDelta}); return false;"></button>
   </div>
 </div>
 <div class="row">
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <button class="note instrument-<%= @instrument %> note-3" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '3'}); return false;"></button>
+    <button class="note instrument-<%= @instrument %> note-3" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '3', time: window.xDelta, decay: window.yDelta}); return false;"></button>
   </div>
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <button class="note instrument-<%= @instrument %> note-4" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '4'}); return false;"></button>
+    <button class="note instrument-<%= @instrument %> note-4" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '4', time: window.xDelta, decay: window.yDelta}); return false;"></button>
   </div>
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <button class="note instrument-<%= @instrument %> note-5" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '5'}); return false;"></button>
+    <button class="note instrument-<%= @instrument %> note-5" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '5', time: window.xDelta, decay: window.yDelta}); return false;"></button>
   </div>
 </div>
 <!-- <div class="row">
   
 </div> -->
 
-<!--<canvas style="display:none" id="surface"/>-->
+<canvas style="display:none" id="surface"/>
 
 <script type="text/javascript">
   var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>");
+
+  //$('.page-wrap').addClass('<%= @wrapper_class %>');
 
   Pusher.log = function(message) {
     if (window.console && window.console.log) {
@@ -37,10 +39,16 @@
 
   //change to presenceChannel (see listen.html.erb)
 
-  var privateChannel = pusher.subscribe('private-notes');
+  var privateChannel = pusher.subscribe('presence-notes');
   privateChannel.bind('pusher:subscription_succeeded', function() {
-    console.log("subscribed");
+    //console.log("subscribed");
   });
+
+
+
+
+
+
 </script>
 
 <!-- <a href="#" onclick="privateChannel.trigger('client-note_test', { instrument: '0', note: '0'}); return false;">TEST</a> -->

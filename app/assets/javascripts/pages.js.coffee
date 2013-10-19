@@ -1,7 +1,17 @@
-@playSound = (context, buffer) ->
+@playSound = (context, buffer, time, decay) ->
+
+  #decay = 0 - 50
+  #time = 0 - 50
+
+  numInstances = Math.ceil(decay / 10) + 1
+  gIncrement = 1 / numInstances
+  tIncrement = time / 100
+  instances = [];
+  for i in [0...numInstances]
+    instances.push({time: (i * tIncrement), gain: 1 - (gIncrement * i)})
 
   #instances
-  instances = [{time: 0, gain: 1}, {time: 0.3, gain: 0.5}, {time: 0.6, gain: 0.25}, {time: 0.9, gain: 0.125}]
+  #instances = [{time: 0, gain: 1}, {time: 0.3, gain: 0.5}, {time: 0.6, gain: 0.25}, {time: 0.9, gain: 0.125}]
 
   for i in [0...instances.length]
     #sample
@@ -28,7 +38,6 @@
 
     #play
     instances[i].sample.start 0
-    console.log i
 
 class @BufferLoader
   constructor: (context, urlListObj, callback) ->

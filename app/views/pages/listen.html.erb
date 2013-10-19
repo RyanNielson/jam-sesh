@@ -1,15 +1,16 @@
 <script type="text/javascript">
+  function getRandomWholeNumber(min, max) { return Math.round(((Math.random() * (max - min)) + min)); };
+
   var audioBuffers = new Object();
   var audioContext;
   var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>");
   var pad_channel = pusher.subscribe('pads');
   //change to presenceChannel
   //subscribe with presence- (http://pusher.com/docs/client_api_guide/client_presence_channels#pusher-member-added)
-  var privateChannel = pusher.subscribe('private-notes');
+  var presenceChannel = pusher.subscribe('presence-notes');
 
-  privateChannel.bind('pusher:subscription_succeeded', function() {
-    console.log("subscribed");
-    privateChannel.bind('client-note_played', function(data) {
+  presenceChannel.bind('pusher:subscription_succeeded', function() {
+    presenceChannel.bind('client-note_played', function(data) {
 
       var top = (Math.random() * 100);
       var left = (Math.random() * 100);
@@ -17,8 +18,8 @@
       $item = $('<div>').addClass('visualize instrument-'+data.instrument+' note-' + data.note);
       $item.css({
         position: 'absolute',
-        left: (left-3) + '%',
-        top: (top+3) + '%'
+        left: (left-getRandomWholeNumber(2,6)) + '%',
+        top: (top+getRandomWholeNumber(2,6)) + '%'
       });
       $('.container').append($item);
 
@@ -29,41 +30,32 @@
         marginTop: '-15px',
         top: top + '%',
         left: left + '%',
-      }, 200, function(){
+      }, getRandomWholeNumber(150, 400), function(){
         $(this).animate({
           top: '200%',
-          left: (left + 20) + '%'
-        }, 3000, function(){
+          left: (left + getRandomWholeNumber(10,20)) + '%'
+        }, getRandomWholeNumber(2000, 5000), function(){
           $(this).remove();
         });
       });
-      console.log($item.attr('class'));
-      playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note]);
+      playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note], data.time, data.decay);
     });
 
     //member add
-    /*
-    channel.bind('pusher:member_added', function(member) {
-      // for example:
-      add_member(member.id, member.info);
+    presenceChannel.bind('pusher:member_added', function(member) {
+      console.log(presenceChannel.members.count);
     });
-    */
 
     //member removed
-    /*
-    channel.bind('pusher:member_removed', function(member) {
-      // for example:
-      remove_member(member.id, member.info);
-      var count = presenceChannel.members.count;
+    presenceChannel.bind('pusher:member_removed', function(member) {
+      console.log(presenceChannel.members.count);
     });
-    */
   });
 
   pad_channel.bind('pad_change', function(data) {
     // window.oscillator1.frequency.value = 440 * Math.pow(Math.pow(2,data.pad),1/12)
     // window.oscillator2.frequency.value = 450 * Math.pow(Math.pow(2,data.pad),1/12)
     // window.oscillator3.frequency.value = 460 * Math.pow(Math.pow(2,data.pad),1/12)
-    console.log(data);
     for(var i = 0; i<window.tones.length; i++){
       window.tones[i].osc.frequency.value = window.tones[i].freq * Math.pow(Math.pow(2,data.pad),1/12);
     }
@@ -149,10 +141,11 @@
         
         tones[i].gain.connect(window.filter);
 
-        tones[i].gain.gain.value = tones[i].amp;
+        //tones[i].gain.gain.value = tones[i].amp;
+        tones[i].gain.gain.value = 0;
         tones[i].osc.connect(tones[i].gain);
         //tones[i].osc.connect(window.filter);
-        //tones[i].osc.start(0);
+        tones[i].osc.start(0);
 
         /*tones[i].delay = context.createDelayNode();
         tones[i].delay.delayTime.value = 0.5;
@@ -162,6 +155,46 @@
         tones[i].delay.connect(tones[i].delayGain);
         tones[i].delayGain.connect(window.filter);*/
     }
+
+    var c = 0;
+    var d = 0;
+    var cSteps = 20;
+    var keyPressed = false;
+    var notes = [0, 0, 0, 4, 5, 5, 5, 5, 7, 7, 7, 7, 5, 5, 5, 2];
+    $('body').keydown(function(e){
+      if(e.keyCode==32)
+        keyPressed = true;
+    }).keyup(function(e){
+      if(e.keyCode==32)
+        keyPressed = false;
+    });
+
+    
+
+
+    setInterval(function(){
+      if(keyPressed){
+        c++;
+      }else{
+        c--;
+      }
+      if(c<0)
+        c=0;
+      if(c>cSteps)
+        c=cSteps;
+      
+
+      for(var i = 0; i<tones.length; i++){
+        //console.log(tones[i].currentGain);
+        tones[i].osc.frequency.value = tones[i].freq * Math.pow(Math.pow(2,notes[d]),1/12);
+
+        tones[i].gain.gain.value = tones[i].amp * (c/cSteps);
+      }
+
+      d++
+      if(d>=notes.length)
+        d=0;
+    }, 1000);
 
     
     var context = new webkitAudioContext();
