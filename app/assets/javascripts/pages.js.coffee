@@ -1,8 +1,47 @@
-@playSound = (context, buffer) ->
-  source = context.createBufferSource()
-  source.buffer = buffer
-  source.connect context.destination
-  source.start 0
+@playSound = (context, buffer, time, decay) ->
+
+  #decay = 0 - 50
+  #time = 0 - 50
+
+  numInstances = Math.ceil(decay / 10) + 1
+  gIncrement = 1 / numInstances
+  tIncrement = time / 100
+  instances = []
+  lastTime = 0
+  for i in [0...numInstances]
+    thisTime = i * tIncrement
+    if lastTime < 1
+      instances.push({time: thisTime, gain: 1 - (gIncrement * i)})
+    lastTime = thisTime
+
+  #instances
+  #instances = [{time: 0, gain: 1}, {time: 0.3, gain: 0.5}, {time: 0.6, gain: 0.25}, {time: 0.9, gain: 0.125}]
+
+  for i in [0...instances.length]
+    #sample
+    instances[i].sample = context.createBufferSource()
+    instances[i].sample.buffer = buffer
+
+    #sample gain
+    instances[i].gainNode = context.createGainNode()
+    instances[i].gainNode.gain.value = 1
+
+    #delay
+    instances[i].delayNode = context.createDelayNode()
+    instances[i].delayNode.delayTime.value = instances[i].time
+
+    #delay gain
+    instances[i].delayGainNode = context.createGainNode()
+    instances[i].delayGainNode.gain.value = instances[i].gain
+
+    #connections
+    instances[i].sample.connect instances[i].gainNode
+    instances[i].gainNode.connect instances[i].delayNode
+    instances[i].delayNode.connect instances[i].delayGainNode
+    instances[i].delayGainNode.connect context.destination
+
+    #play
+    instances[i].sample.start 0
 
 class @BufferLoader
   constructor: (context, urlListObj, callback) ->
