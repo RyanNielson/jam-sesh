@@ -3,7 +3,10 @@
   #decay = 0 - 50
   #time = 0 - 50
 
-  numInstances = Math.ceil(decay / 10) + 1
+  if decay > 0
+    numInstances = Math.ceil(decay / 10) + 1
+  else
+    numInstances = 1
   gIncrement = 1 / numInstances
   tIncrement = time / 100
   instances = []

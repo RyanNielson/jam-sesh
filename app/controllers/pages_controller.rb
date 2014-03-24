@@ -1,16 +1,29 @@
 class PagesController < ApplicationController
   def home
-    @instrument = rand 4
-    case @instrument
-    when 0
-      @wrapper_class = 'pink'
-    when 1
-      @wrapper_class = 'purple'
-    when 2
-      @wrapper_class = 'green'
-    when 3
-      @wrapper_class = 'blue'
+    @instrument = rand 9
+    if params[:opt] == 'judy'
+      @instrument = 4
     end
+    case @instrument
+    when 0, 5
+      @wrapper_class = 'pink'
+      @instrument = 0
+    when 1, 6
+      @wrapper_class = 'purple'
+      @instrument = 1
+    when 2, 7
+      @wrapper_class = 'green'
+      @instrument = 2
+    when 3, 8
+      @wrapper_class = 'blue'
+      @instrument = 3
+    when 4
+      @wrapper_class = 'judy'
+    end
+  end
+
+  def judy
+    return self.home true
   end
 
   def submit_note

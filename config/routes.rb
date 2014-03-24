@@ -4,6 +4,7 @@ JamSesh::Application.routes.draw do
   get "accelerometer" => "pages#accelerometer", as: "accelerometer"
   post "submit_note" => "pages#submit_note", as: "submit_note"
   post "submit_accelerometer" => "pages#submit_accelerometer", as: "submit_accelerometer"
+  get ":opt" => "pages#home", as: "judy"
   root "pages#home"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
