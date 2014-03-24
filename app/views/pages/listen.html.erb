@@ -21,6 +21,9 @@
         left: (left-getRandomWholeNumber(2,6)) + '%',
         top: (top+getRandomWholeNumber(2,6)) + '%'
       });
+      $image = $('<img>').attr('src', "<%= asset_path('lma-0.png') %>");
+      $image.attr('src', $image.attr('src').replace('lma-0', 'lma-' + data.instrument));
+      $item.append($image);
       $('.container').append($item);
 
       $($item).animate({
@@ -38,6 +41,8 @@
           $(this).remove();
         });
       });
+      if(data.instrument == 4)
+        data.decay = 0;
       playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note], data.time, data.decay);
     });
 
@@ -238,7 +243,14 @@
         s3_2: "<%= asset_path('i3/s2.mp3') %>",
         s3_3: "<%= asset_path('i3/s3.mp3') %>",
         s3_4: "<%= asset_path('i3/s4.mp3') %>",
-        s3_5: "<%= asset_path('i3/s5.mp3') %>"
+        s3_5: "<%= asset_path('i3/s5.mp3') %>",
+
+        s4_0: "<%= asset_path('i4/s0.mp3') %>",
+        s4_1: "<%= asset_path('i4/s1.mp3') %>",
+        s4_2: "<%= asset_path('i4/s2.mp3') %>",
+        s4_3: "<%= asset_path('i4/s3.mp3') %>",
+        s4_4: "<%= asset_path('i4/s4.mp3') %>",
+        s4_5: "<%= asset_path('i4/s5.mp3') %>"
       },
       finishedLoading
       );
@@ -252,3 +264,8 @@
     }
   }
 </script>
+
+<!-- <span class="line pink">&nbsp;</span>
+<span class="line purple">&nbsp;</span>
+<span class="line blue">&nbsp;</span>
+<span class="line green">&nbsp;</span> -->
