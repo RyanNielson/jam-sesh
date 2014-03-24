@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require underscore
 //= require gyro.min
+//= require shake
 //= require_tree .
