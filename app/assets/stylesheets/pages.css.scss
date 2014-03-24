@@ -59,7 +59,7 @@ html, body, .page-wrap {
 }
 
 .page-wrap {
-    background: transparent image-url('colorbar.jpg') repeat-x center top;
+    background: transparent image-url('colorbar.jpg') repeat-x center -3px;
     float: left;
     background-size: 100% 5px;
     overflow: hidden;
@@ -218,6 +218,56 @@ html, body, .page-wrap {
   -moz-animation: spin-decay 5s infinite linear;
   -o-animation: spin-decay 5s infinite linear;
   animation: spin-decay 5s infinite linear;
+}
+
+// Lines
+
+.line {
+  width: 100%;
+  display: block;
+  height: 1px;
+  line-height: 1;
+  position: relative;
+  float: left;
+  margin: 4px 0;
+  background: $color-1;
+  &:before,
+  &:after {
+    content: " ";
+    width: 5px;
+    height: 5px;
+    border-radius: 120px;
+    left: 0;
+    top: -2.5px;
+    position: absolute;
+    background: $color-1;
+    display: block;
+  }
+  &:after {
+    right: 0;
+    left: auto;
+  }
+  &.purple {
+    background: $color-2;
+    &:after,
+    &:before {
+      background: $color-2;
+    }
+  }
+  &.green {
+    background: $color-3;
+    &:after,
+    &:before {
+      background: $color-3;
+    }
+  }
+  &.blue {
+    background: $color-4;
+    &:after,
+    &:before {
+      background: $color-4;
+    }
+  }
 }
 
 // Instruments
