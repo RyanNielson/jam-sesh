@@ -27,6 +27,12 @@
 <canvas style="display:none" id="surface"/>
 
 <script type="text/javascript">
+  window.addEventListener('shake', shakeEventDidOccur, false);
+
+  //function to call when shake occurs
+  function shakeEventDidOccur () {
+    privateChannel.trigger('client-note_played', { instrument: 'Bell', note: Math.floor(Math.random() * 6), time: 0, decay: 0}); return false;
+  }
   var pusher = new Pusher("<%= ENV['PUSHER_KEY'] %>");
 
   //$('.page-wrap').addClass('<%= @wrapper_class %>');

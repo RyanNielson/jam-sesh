@@ -11,7 +11,6 @@
 
   presenceChannel.bind('pusher:subscription_succeeded', function() {
     presenceChannel.bind('client-note_played', function(data) {
-
       var top = (Math.random() * 100);
       var left = (Math.random() * 100);
 
@@ -23,9 +22,11 @@
       });
       $('.container').append($item);
 
+      wh = 200 / presenceChannel.members.count;
+
       $($item).animate({
-        width: '60px',
-        height: '60px',
+        width: wh + 'px',
+        height: wh + 'px',
         marginLeft: '-15px',
         marginTop: '-15px',
         top: top + '%',
@@ -238,7 +239,14 @@
         s3_2: "<%= asset_path('i3/s2.mp3') %>",
         s3_3: "<%= asset_path('i3/s3.mp3') %>",
         s3_4: "<%= asset_path('i3/s4.mp3') %>",
-        s3_5: "<%= asset_path('i3/s5.mp3') %>"
+        s3_5: "<%= asset_path('i3/s5.mp3') %>",
+
+        sBell_0: "<%= asset_path('i1/s0.mp3') %>",
+        sBell_1: "<%= asset_path('i1/s1.mp3') %>",
+        sBell_2: "<%= asset_path('i1/s2.mp3') %>",
+        sBell_3: "<%= asset_path('i1/s3.mp3') %>",
+        sBell_4: "<%= asset_path('i1/s4.mp3') %>",
+        sBell_5: "<%= asset_path('i1/s5.mp3') %>"
       },
       finishedLoading
       );
@@ -249,6 +257,7 @@
   function finishedLoading(bufferList) {
     for (var key in bufferList){
       audioBuffers[key] = bufferList[key];
+      console.log(key);
     }
   }
 </script>
