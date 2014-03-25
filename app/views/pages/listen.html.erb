@@ -21,8 +21,8 @@
         left: (left-getRandomWholeNumber(2,6)) + '%',
         top: (top+getRandomWholeNumber(2,6)) + '%'
       });
-      $image = $('<img>').attr('src', "<%= asset_path('lma0.png') %>");
-      $image.attr('src', $image.attr('src').replace('lma0', 'lma' + data.instrument));
+      $image = $('<img>').attr('src', "<%= asset_path('lma-0.png') %>");
+      $image.attr('src', $image.attr('src').replace('lma-0', 'lma-' + data.instrument));
       $item.append($image);
       $('.container').append($item);
 
