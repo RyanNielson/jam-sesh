@@ -22,8 +22,8 @@
         top: (top+getRandomWholeNumber(2,6)) + '%'
       });
       $image = $('<img>');
-      console.log(data.instrument);
-      switch(data.instrument){
+      //console.log(data);
+      switch(parseInt(data.instrument)){
         case 0:
           $image.attr('src', "<%= asset_path('lma-0.png') %>");
           break;
