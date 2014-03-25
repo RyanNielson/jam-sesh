@@ -4,6 +4,7 @@ $color-1: #FF0066; // Pink
 $color-2: #a82bf1; // Purple
 $color-3: #c5fd2d; // Green
 $color-4: #26ddfe; // Blue
+$color-5: #ffffff; // White
 
 // Mixins
 
@@ -514,4 +515,36 @@ html, body, .page-wrap {
     }
   }
 
+}
+
+//LMA SPECIFIC
+img.logo{
+  display: none!important;
+}
+#full-bg{
+  display: none!important;
+}
+div.page-wrap{
+  background: none!important;
+}
+// Instrument 4
+.instrument-4 {
+  &.note-0 {
+    background: $color-5;
+  }
+  &.note-1 {
+    background: $color-5;
+  }
+  &.note-2 {
+    background: $color-5;
+  }
+  &.note-3 {
+    background: $color-5;
+  }
+  &.note-4 {
+    background: $color-5;
+  }
+  &.note-5 {
+    background: $color-5;
+  }
 }

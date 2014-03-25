@@ -4,6 +4,11 @@ class PagesController < ApplicationController
     if params[:opt] == 'judy'
       @instrument = 4
     end
+    if params[:opt].to_i
+      if (1..4).include?(params[:opt].to_i)
+        @instrument = params[:opt].to_i - 1
+      end
+    end
     case @instrument
     when 0, 5
       @wrapper_class = 'pink'
@@ -20,10 +25,6 @@ class PagesController < ApplicationController
     when 4
       @wrapper_class = 'judy'
     end
-  end
-
-  def judy
-    return self.home true
   end
 
   def submit_note

@@ -12,6 +12,12 @@
   presenceChannel.bind('pusher:subscription_succeeded', function() {
     presenceChannel.bind('client-note_played', function(data) {
 
+      var random = false;
+      if(getRandomWholeNumber(1,25)==3){
+        random = true;
+      }
+
+
       var top = (Math.random() * 100);
       var left = (Math.random() * 100);
 
@@ -40,6 +46,10 @@
           $image.attr('src', "<%= asset_path('lma-4.png') %>");
           break;
       }
+      if(random){
+        $item.removeClass().addClass('visualize random');
+        $image.attr('src', "<%= asset_path('random.png') %>");
+      }
       // $image = $('<img>').attr('src', "<%= asset_path('lma-0.png') %>");
       // $image.attr('src', $image.attr('src').replace('lma-0', 'lma-' + data.instrument));
       $item.append($image);
@@ -62,17 +72,21 @@
       });
       if(data.instrument == 4)
         data.decay = 0;
-      playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note], data.time, data.decay);
+      if(random){
+        playSound(audioContext, audioBuffers["random"], data.time, 0);
+      }else{
+        playSound(audioContext, audioBuffers["s" + data.instrument + "_" + data.note], data.time, data.decay);
+      }
     });
 
     //member add
     presenceChannel.bind('pusher:member_added', function(member) {
-      console.log(presenceChannel.members.count);
+      // console.log(presenceChannel.members.count);
     });
 
     //member removed
     presenceChannel.bind('pusher:member_removed', function(member) {
-      console.log(presenceChannel.members.count);
+      // console.log(presenceChannel.members.count);
     });
   });
 
@@ -269,7 +283,9 @@
         s4_2: "<%= asset_path('i4/s2.mp3') %>",
         s4_3: "<%= asset_path('i4/s3.mp3') %>",
         s4_4: "<%= asset_path('i4/s4.mp3') %>",
-        s4_5: "<%= asset_path('i4/s5.mp3') %>"
+        s4_5: "<%= asset_path('i4/s5.mp3') %>",
+
+        random: "<%= asset_path('random.mp3') %>",        
       },
       finishedLoading
       );
