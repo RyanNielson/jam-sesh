@@ -21,21 +21,23 @@
         left: (left-getRandomWholeNumber(2,6)) + '%',
         top: (top+getRandomWholeNumber(2,6)) + '%'
       });
+      $image = $('<img>');
+      console.log(data.instrument);
       switch(data.instrument){
         case 0:
-          $image = $('<img>').attr('src', "<%= asset_path('lma-0.png') %>");
+          $image.attr('src', "<%= asset_path('lma-0.png') %>");
           break;
         case 1:
-          $image = $('<img>').attr('src', "<%= asset_path('lma-1.png') %>");
+          $image.attr('src', "<%= asset_path('lma-1.png') %>");
           break;
         case 2:
-          $image = $('<img>').attr('src', "<%= asset_path('lma-2.png') %>");
+          $image.attr('src', "<%= asset_path('lma-2.png') %>");
           break;
         case 3:
-          $image = $('<img>').attr('src', "<%= asset_path('lma-3.png') %>");
+          $image.attr('src', "<%= asset_path('lma-3.png') %>");
           break;
         case 4:
-          $image = $('<img>').attr('src', "<%= asset_path('lma-4.png') %>");
+          $image.attr('src', "<%= asset_path('lma-4.png') %>");
           break;
       }
       // $image = $('<img>').attr('src', "<%= asset_path('lma-0.png') %>");
