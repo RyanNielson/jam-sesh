@@ -27,32 +27,29 @@
         left: (left-getRandomWholeNumber(2,6)) + '%',
         top: (top+getRandomWholeNumber(2,6)) + '%'
       });
-      $image = $('<img>');
-      //console.log(data);
-      switch(parseInt(data.instrument)){
-        case 0:
-          $image.attr('src', "<%= asset_path('lma-0.png') %>");
-          break;
-        case 1:
-          $image.attr('src', "<%= asset_path('lma-1.png') %>");
-          break;
-        case 2:
-          $image.attr('src', "<%= asset_path('lma-2.png') %>");
-          break;
-        case 3:
-          $image.attr('src', "<%= asset_path('lma-3.png') %>");
-          break;
-        case 4:
-          $image.attr('src', "<%= asset_path('lma-4.png') %>");
-          break;
-      }
-      if(random){
-        $item.removeClass().addClass('visualize random');
-        $image.attr('src', "<%= asset_path('random.png') %>");
-      }
-      // $image = $('<img>').attr('src', "<%= asset_path('lma-0.png') %>");
-      // $image.attr('src', $image.attr('src').replace('lma-0', 'lma-' + data.instrument));
-      $item.append($image);
+      // $image = $('<img>');
+      // switch(parseInt(data.instrument)){
+      //   case 0:
+      //     $image.attr('src', "<%= asset_path('lma-0.png') %>");
+      //     break;
+      //   case 1:
+      //     $image.attr('src', "<%= asset_path('lma-1.png') %>");
+      //     break;
+      //   case 2:
+      //     $image.attr('src', "<%= asset_path('lma-2.png') %>");
+      //     break;
+      //   case 3:
+      //     $image.attr('src', "<%= asset_path('lma-3.png') %>");
+      //     break;
+      //   case 4:
+      //     $image.attr('src', "<%= asset_path('lma-4.png') %>");
+      //     break;
+      // }
+      // if(random){
+      //   $item.removeClass().addClass('visualize random');
+      //   $image.attr('src', "<%= asset_path('random.png') %>");
+      // }
+      // $item.append($image);
       $('.container').append($item);
 
       $($item).animate({

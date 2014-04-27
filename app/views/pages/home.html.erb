@@ -1,23 +1,23 @@
 <div class="row" id="pads">
   <div class="col col-xs-6 col-sm-6 col-md-6 ">
-    <button class="note instrument-<%= @instrument %> note-0" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '0', time: window.xDelta, decay: window.yDelta}); return false;"><img src="<%= asset_path('lma-' + @instrument.to_s + '.png') %>"></button>
+    <button class="note instrument-<%= @instrument %> note-0" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '0', time: window.xDelta, decay: window.yDelta}); return false;"></button>
   </div>
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <button class="note instrument-<%= @instrument %> note-1" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '1', time: window.xDelta, decay: window.yDelta}); return false;"><img src="<%= asset_path('lma-' + @instrument.to_s + '.png') %>"></button>
+    <button class="note instrument-<%= @instrument %> note-1" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '1', time: window.xDelta, decay: window.yDelta}); return false;"></button>
   </div>
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <button class="note instrument-<%= @instrument %> note-2" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '2', time: window.xDelta, decay: window.yDelta}); return false;"><img src="<%= asset_path('lma-' + @instrument.to_s + '.png') %>"></button>
+    <button class="note instrument-<%= @instrument %> note-2" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '2', time: window.xDelta, decay: window.yDelta}); return false;"></button>
   </div>
 </div>
 <div class="row">
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <button class="note instrument-<%= @instrument %> note-3" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '3', time: window.xDelta, decay: window.yDelta}); return false;"><img src="<%= asset_path('lma-' + @instrument.to_s + '.png') %>"></button>
+    <button class="note instrument-<%= @instrument %> note-3" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '3', time: window.xDelta, decay: window.yDelta}); return false;"></button>
   </div>
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <button class="note instrument-<%= @instrument %> note-4" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '4', time: window.xDelta, decay: window.yDelta}); return false;"><img src="<%= asset_path('lma-' + @instrument.to_s + '.png') %>"></button>
+    <button class="note instrument-<%= @instrument %> note-4" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '4', time: window.xDelta, decay: window.yDelta}); return false;"></button>
   </div>
   <div class="col col-xs-6 col-sm-6 col-md-6">
-    <button class="note instrument-<%= @instrument %> note-5" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '5', time: window.xDelta, decay: window.yDelta}); return false;"><img src="<%= asset_path('lma-' + @instrument.to_s + '.png') %>"></button>
+    <button class="note instrument-<%= @instrument %> note-5" onclick="privateChannel.trigger('client-note_played', { instrument: '<%= @instrument %>', note: '5', time: window.xDelta, decay: window.yDelta}); return false;"></button>
   </div>
 </div>
 <!-- <div class="row">

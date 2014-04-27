@@ -1,29 +1,29 @@
 class PagesController < ApplicationController
   def home
-    @instrument = rand 9
-    if params[:opt] == 'judy'
-      @instrument = 4
-    end
+    @instrument = rand 8
+    # if params[:opt] == 'judy'
+    #   @instrument = 4
+    # end
     if params[:opt].to_i
       if (1..4).include?(params[:opt].to_i)
         @instrument = params[:opt].to_i - 1
       end
     end
     case @instrument
-    when 0, 5
+    when 0, 4
       @wrapper_class = 'pink'
       @instrument = 0
-    when 1, 6
+    when 1, 5
       @wrapper_class = 'purple'
       @instrument = 1
-    when 2, 7
+    when 2, 6
       @wrapper_class = 'green'
       @instrument = 2
-    when 3, 8
+    when 3, 7
       @wrapper_class = 'blue'
       @instrument = 3
-    when 4
-      @wrapper_class = 'judy'
+    # when 4
+    #   @wrapper_class = 'judy'
     end
   end
 
