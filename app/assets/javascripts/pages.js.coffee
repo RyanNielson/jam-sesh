@@ -26,15 +26,15 @@
     instances[i].sample.buffer = buffer
 
     #sample gain
-    instances[i].gainNode = context.createGainNode()
+    instances[i].gainNode = context.createGain()
     instances[i].gainNode.gain.value = 1
 
     #delay
-    instances[i].delayNode = context.createDelayNode()
+    instances[i].delayNode = context.createDelay()
     instances[i].delayNode.delayTime.value = instances[i].time
 
     #delay gain
-    instances[i].delayGainNode = context.createGainNode()
+    instances[i].delayGainNode = context.createGain()
     instances[i].delayGainNode.gain.value = instances[i].gain
 
     #connections

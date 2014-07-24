@@ -181,7 +181,7 @@
         tones[i].osc = context.createOscillator();
         tones[i].osc.type = tones[i].type;
         tones[i].osc.frequency.value = tones[i].freq;
-        tones[i].gain = context.createGainNode();
+        tones[i].gain = context.createGain();
         //tones[i].gain.connect(context.destination);
         
         tones[i].gain.connect(window.filter);

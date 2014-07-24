@@ -24,6 +24,18 @@
   
 </div> -->
 
+<div id="popup" <% if @times_visited > 1 %> class="show" <% end %>>
+  Hey, thanks for checking out JamSesh.
+  You've been assigned one of four random colours, each one cooresponds to a different instrument.
+  
+</div>
+
+<div id="listen-link">
+  <a href="/listen">
+    <i class="fa fa-volume-up"></i> Listen
+  </a>
+</div>
+
 <canvas style="display:none" id="surface"/>
 
 <script type="text/javascript">

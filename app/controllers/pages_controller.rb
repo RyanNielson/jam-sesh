@@ -25,6 +25,14 @@ class PagesController < ApplicationController
     # when 4
     #   @wrapper_class = 'judy'
     end
+
+    if cookies[:times_visited]
+      cookies[:times_visited] = cookies[:times_visited].to_i + 1
+    else
+      cookies[:times_visited] = 1
+    end
+
+    @times_visited = cookies[:times_visited]
   end
 
   def submit_note
